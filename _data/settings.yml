@@ -104,14 +104,14 @@ section_tags_title: ✌️ Explore Topics
 mailchimp_settings:
   enable: true
   mailchimp_title: Get interesting news
-  mailchimp_identifier: frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3 # Add your MailChimp form identifier. For example - frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3
+  mailchimp_identifier: us21.list-manage.com/subscribe/post?u=80dd727e597a58959f9e173dc&amp;id=aa72fc8427&amp;f_id=001eeae6f0 # Add your MailChimp form identifier. For example - frnla.us6.list-manage.com/subscribe/post?u=6314d69a3f315af7ce3fb00a0&amp;id=3038727cc3
   mailchimp_input_text: Enter your email address
   mailchimp_background_image: /images/subscribe-bg.jpg
 
 
 #-------------------------------
 # Footer Settings
-footer_description: I’m Aaron, a creative Illustrator & Art Director based in San Francisco. I seek to push the limits of creativity to create high-engaging and memorable interactive experiences.
+footer_description: I’m Andrew, an Analytics Engineer based in Columbus, Ohio. Full-stack data nerd with a passsion for strategic data problems, and building solutions.
 
 
 #-------------------------------
@@ -135,7 +135,7 @@ footer_menu_settings:
 #-------------------------------
 # Contact Settings
 contact:
-  email: your@email.com # Add your form_id
+  email: xzblyynw # Add your form_id
   description: Simpler comes with a built-in contact form, that you can use with Formspree service to handle up to 50 submissions per month for free. You could also easily switch to another contact form service if you want. # Add a description of your form
 
 # NOTE
