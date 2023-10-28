@@ -28,15 +28,12 @@ menu_settings:
       submenu:
       - url: "/contact/"
         title: "Contact"
-      - url: "/elements/"
-        title: "Elements"
-
 
 #-------------------------------
 # Social Settings
 social:
-- {icon: "fa-brands fa-twitter", link: "https://twitter.com"}
-- {icon: "fa-brands fa-facebook", link: "https://facebook.com"}
+- {icon: "fa-brands fa-square-x-twitter", link: "https://twitter.com/andrewgetz"}
+- {icon: "fa-brands fa-linkedin", link: "https://www.linkedin.com/in/andrew-getz-22880943/"}
 - {icon: "fa-brands fa-pinterest", link: "https://pinterest.com"}
 
 # Example of adding a new link to the header and footer - {icon: "fa-brands fa-youtube", link: "https://youtube.com"}
@@ -64,11 +61,11 @@ section_projects_title: 👨🏻‍💻 Selected Works
 section_testimonial_title: 🙂 What Clients Say
 
 testimonial_items:
-  - name: "Carla Kenter"
+  - name: "Mahfam Wagner"
     image: "/images/client-1.jpg"
-    designation: "Professional Artist"
-    link: "https://twitter.com/"
-    content : "Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus"
+    designation: "Analytics Director"
+    link: "https://www.linkedin.com/in/mahfam-wagner/"
+    content : "He is always thinking ahead and looking to make improvements everywhere. He is a lifelong learner and is able to bring a new perspective to the table when solving a data problem."
 
   - name: "Kierra Botosh"
     image: "/images/client-2.jpg"
@@ -113,7 +110,6 @@ mailchimp_settings:
 # Footer Settings
 footer_description: I’m Andrew, an Analytics Engineer based in Columbus, Ohio. Full-stack data nerd with a passsion for strategic data problems, and building solutions.
 
-
 #-------------------------------
 # Footer Navigation Settings
 footer_menu_settings:
@@ -128,8 +124,6 @@ footer_menu_settings:
       title: "Blog"
     - url: "/contact/"
       title: "Contact"
-    - url: "/elements/"
-      title: "Elements"
 
 
 #-------------------------------
