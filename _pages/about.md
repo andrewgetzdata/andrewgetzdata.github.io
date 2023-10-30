@@ -2,7 +2,7 @@
 layout: page
 title: About
 permalink: /about/
-image: '/images/andrew-headshot-1.jpg'
+image: '/images/andrew-headshot-2.jpg'
 ---
 
 Hello there! 👋  My name is Andrew, an analytics engineer and analyst. I hail from the charming city of Columbus, Ohio, and I'm proud to call it my home.
