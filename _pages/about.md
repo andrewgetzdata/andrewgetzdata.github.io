@@ -2,12 +2,12 @@
 layout: page
 title: About
 permalink: /about/
-image: '/images/01-1.jpg'
+image: '/images/andrew-headshot-1.jpg'
 ---
 
-Hello there! 👋 My name is Andrew, an analytics engineer and analyst. I hail from the charming city of Columbus, Ohio, and I'm proud to call it my home. But hey, there's more to me than just Buckeye pride! 
+Hello there! 👋  My name is Andrew, an analytics engineer and analyst. I hail from the charming city of Columbus, Ohio, and I'm proud to call it my home.
 
-**A Buckeye's Journey**
+**Ohio Pride**
 I spent my college years at The Ohio State Univiersity, where I attended the Fisher College of Business and where I learned what stakeholders care about and what drives value for an enterprise. My time there was invaluable, and I even got the opportunity to make some lifelong frineds. 
 
 <div class="gallery-box">
@@ -17,8 +17,6 @@ I spent my college years at The Ohio State Univiersity, where I attended the Fis
   </div>
   <em>Gallery / <a href="https://www.freepik.com/" target="_blank">Freepic</a></em>
 </div>
-
-
 
 > The longer I live, the more I realize that I am never wrong about anything, and that all the pains I have so humbly taken to verify my notions have only wasted my time!
 
