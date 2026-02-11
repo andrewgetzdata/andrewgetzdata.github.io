@@ -1,0 +1,68 @@
+---
+// Analytics Component
+// Privacy-focused analytics setup
+
+const ANALYTICS_ID = import.meta.env.PUBLIC_ANALYTICS_ID;
+const ANALYTICS_PROVIDER = import.meta.env.PUBLIC_ANALYTICS_PROVIDER || 'none';
+
+// Only load analytics in production
+const isProduction = import.meta.env.PROD;
+---
+
+{isProduction && ANALYTICS_ID && ANALYTICS_PROVIDER === 'vercel' && (
+  <!-- Vercel Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+)}
+
+{isProduction && ANALYTICS_ID && ANALYTICS_PROVIDER === 'plausible' && (
+  <!-- Plausible Analytics (Privacy-focused) -->
+  <script
+    defer
+    data-domain={Astro.site?.hostname || 'andrewgetz.dev'}
+    src="https://plausible.io/js/script.js"
+  ></script>
+)}
+
+{isProduction && ANALYTICS_ID && ANALYTICS_PROVIDER === 'google' && (
+  <!-- Google Analytics 4 -->
+  <Fragment>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_ID}`}></script>
+    <script is:inline define:vars={{ ANALYTICS_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', ANALYTICS_ID, {
+        anonymize_ip: true,
+        cookie_flags: 'SameSite=None;Secure'
+      });
+    </script>
+  </Fragment>
+)}
+
+<!-- Privacy-focused page view tracking (without cookies) -->
+<script is:inline>
+  // Simple, privacy-focused page view tracking
+  if (typeof window !== 'undefined' && !window.location.hostname.includes('localhost')) {
+    // Track page views without personal data
+    try {
+      fetch('/api/analytics', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          page: window.location.pathname,
+          referrer: document.referrer ? new URL(document.referrer).hostname : '',
+          timestamp: new Date().toISOString()
+        })
+      }).catch(() => {
+        // Silently fail if analytics endpoint doesn't exist
+      });
+    } catch (e) {
+      // Silently fail
+    }
+  }
+</script>

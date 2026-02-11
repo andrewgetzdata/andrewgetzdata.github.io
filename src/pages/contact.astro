@@ -19,7 +19,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <div class="contact-grid">
         <div class="contact-form-section">
-          <form class="contact-form" id="contact-form">
+          <form
+            class="contact-form"
+            id="contact-form"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+          >
+            <!-- Netlify forms require this hidden input -->
+            <input type="hidden" name="form-name" value="contact" />
+
+            <!-- Honeypot field for spam protection -->
+            <div class="hidden">
+              <label>
+                Don't fill this out if you're human:
+                <input name="bot-field" />
+              </label>
+            </div>
+
             <div class="form-grid">
               <div class="form-group">
                 <label for="name" class="form-label">Name</label>
@@ -131,6 +149,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <style>
   .contact-content {
     padding: var(--space-16) 0;
+  }
+
+  .hidden {
+    display: none;
   }
 
   .contact-header {

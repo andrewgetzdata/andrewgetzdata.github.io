@@ -1,0 +1,172 @@
+---
+// Social Links Component
+// Displays professional social media and contact links
+
+export interface Props {
+  layout?: 'horizontal' | 'vertical';
+  showLabels?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const {
+  layout = 'horizontal',
+  showLabels = false,
+  size = 'md'
+} = Astro.props;
+
+const socialLinks = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com/andrewgetz',
+    icon: '📄', // Using emoji for now - would use proper icons in production
+    description: 'View my code repositories and open source contributions'
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://linkedin.com/in/andrewgetz',
+    icon: '💼',
+    description: 'Connect with me professionally on LinkedIn'
+  },
+  {
+    name: 'Email',
+    url: '/contact',
+    icon: '📧',
+    description: 'Send me a message through the contact form'
+  },
+  {
+    name: 'Twitter',
+    url: 'https://twitter.com/andrewgetz',
+    icon: '🐦',
+    description: 'Follow me on Twitter for updates and thoughts'
+  }
+];
+---
+
+<div class={`social-links layout-${layout} size-${size}`}>
+  {socialLinks.map((link) => (
+    <a
+      href={link.url}
+      class="social-link"
+      target={link.url.startsWith('http') ? '_blank' : '_self'}
+      rel={link.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+      title={link.description}
+      aria-label={link.description}
+    >
+      <span class="social-icon">{link.icon}</span>
+      {showLabels && <span class="social-label">{link.name}</span>}
+    </a>
+  ))}
+</div>
+
+<style>
+  .social-links {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .layout-horizontal {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .layout-vertical {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all var(--transition);
+    color: var(--text-secondary);
+    background-color: transparent;
+    border: 1px solid transparent;
+  }
+
+  .social-link:hover {
+    color: var(--text-primary);
+    background-color: var(--bg-hover);
+    border-color: var(--border-primary);
+    text-decoration: none;
+    transform: translateY(-1px);
+  }
+
+  .social-icon {
+    font-size: 1.2em;
+    line-height: 1;
+  }
+
+  .social-label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+  }
+
+  /* Size variations */
+  .size-sm {
+    gap: var(--space-2);
+  }
+
+  .size-sm .social-link {
+    padding: var(--space-1);
+    gap: var(--space-1);
+  }
+
+  .size-sm .social-icon {
+    font-size: 1em;
+  }
+
+  .size-sm .social-label {
+    font-size: var(--text-xs);
+  }
+
+  .size-lg {
+    gap: var(--space-6);
+  }
+
+  .size-lg .social-link {
+    padding: var(--space-3);
+    gap: var(--space-3);
+  }
+
+  .size-lg .social-icon {
+    font-size: 1.5em;
+  }
+
+  .size-lg .social-label {
+    font-size: var(--text-base);
+  }
+
+  /* Layout-specific styles */
+  .layout-vertical .social-link {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .layout-horizontal.size-sm {
+    gap: var(--space-1);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .layout-horizontal {
+      flex-wrap: wrap;
+    }
+
+    .size-lg {
+      gap: var(--space-4);
+    }
+
+    .size-lg .social-link {
+      padding: var(--space-2);
+      gap: var(--space-2);
+    }
+
+    .size-lg .social-icon {
+      font-size: 1.2em;
+    }
+  }
+</style>

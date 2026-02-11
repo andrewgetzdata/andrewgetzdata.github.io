@@ -35,6 +35,10 @@ function formatDate(date: Date): string {
   title={`${post.data.title} - Andrew Getz`}
   description={post.data.description}
   ogImage={post.data.image?.src}
+  type="article"
+  publishedTime={post.data.pubDate.toISOString()}
+  modifiedTime={post.data.updatedDate?.toISOString()}
+  tags={post.data.tags}
 >
   <article class="blog-post">
     <div class="container">

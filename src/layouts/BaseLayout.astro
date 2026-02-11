@@ -6,12 +6,57 @@ export interface Props {
   title: string;
   description?: string;
   ogImage?: string;
+  canonical?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  tags?: string[];
 }
 
-const { title, description = "Andrew Getz's portfolio and personal website", ogImage } = Astro.props;
+const {
+  title,
+  description = "Andrew Getz's portfolio and personal website - Developer, Data Analyst & Storyteller from Columbus, Ohio",
+  ogImage,
+  canonical,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  tags = []
+} = Astro.props;
+
+// Generate canonical URL
+const siteUrl = Astro.site || 'https://andrewgetz.dev';
+const canonicalURL = canonical || new URL(Astro.url.pathname, siteUrl);
+
+// Structured data for SEO
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": type === 'article' ? "Article" : "WebSite",
+  "name": title,
+  "description": description,
+  "url": canonicalURL.toString(),
+  ...(type === 'website' ? {
+    "author": {
+      "@type": "Person",
+      "name": "Andrew Getz",
+      "url": "https://andrewgetz.dev",
+      "jobTitle": "Developer & Data Analyst",
+      "knowsAbout": ["Web Development", "Data Analysis", "JavaScript", "Python", "Astro"],
+      "sameAs": [
+        "https://github.com/andrewgetz",
+        "https://linkedin.com/in/andrewgetz"
+      ]
+    }
+  } : {}),
+  ...(publishedTime ? { "datePublished": publishedTime } : {}),
+  ...(modifiedTime ? { "dateModified": modifiedTime } : {}),
+  ...(ogImage ? { "image": ogImage } : {})
+};
 
 // Import components
 import ThemeToggle from '../components/ThemeToggle.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+import Analytics from '../components/Analytics.astro';
 ---
 
 <!DOCTYPE html>
@@ -26,18 +71,40 @@ import ThemeToggle from '../components/ThemeToggle.astro';
   <!-- SEO Meta Tags -->
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta name="author" content="Andrew Getz" />
+  {tags.length > 0 && <meta name="keywords" content={tags.join(', ')} />}
 
   <!-- Open Graph -->
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={type} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:site_name" content="Andrew Getz" />
+  <meta property="og:locale" content="en_US" />
   {ogImage && <meta property="og:image" content={ogImage} />}
+  {ogImage && <meta property="og:image:alt" content={title} />}
+  {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+  {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+  {tags.map(tag => <meta property="article:tag" content={tag} />)}
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@andrewgetz" />
+  <meta name="twitter:creator" content="@andrewgetz" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
   {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+  <!-- Additional SEO -->
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+  <!-- Analytics -->
+  <Analytics />
 
   <!-- Preload Critical Resources -->
   <link rel="preconnect" href="https://fonts.vercel.app" />
@@ -87,9 +154,14 @@ import ThemeToggle from '../components/ThemeToggle.astro';
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footer-text">
-        © {new Date().getFullYear()} Andrew Getz. Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>.
-      </p>
+      <div class="footer-content">
+        <div class="footer-social">
+          <SocialLinks layout="horizontal" size="sm" />
+        </div>
+        <p class="footer-text">
+          © {new Date().getFullYear()} Andrew Getz. Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>.
+        </p>
+      </div>
     </div>
   </footer>
 
@@ -248,11 +320,23 @@ import ThemeToggle from '../components/ThemeToggle.astro';
     margin-top: auto;
   }
 
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-6);
+    padding: var(--space-8) 0;
+  }
+
+  .footer-social {
+    display: flex;
+    justify-content: center;
+  }
+
   .footer-text {
     text-align: center;
     color: var(--text-tertiary);
     font-size: var(--text-sm);
-    padding: var(--space-8) 0;
     margin: 0;
   }
 
