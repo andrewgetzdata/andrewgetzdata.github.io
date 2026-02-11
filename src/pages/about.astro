@@ -1,0 +1,260 @@
+---
+// About Page - Andrew Getz Portfolio
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About - Andrew Getz"
+  description="Learn about Andrew Getz - developer, data analyst, and storyteller from Columbus, Ohio."
+>
+  <div class="page-content">
+    <div class="container">
+      <div class="page-header">
+        <h1 class="page-title">About Me</h1>
+        <p class="page-subtitle">
+          Developer, Data Analyst & Storyteller from Columbus, Ohio
+        </p>
+      </div>
+
+      <div class="content-grid">
+        <div class="main-content">
+          <div class="stack-large">
+            <section class="bio-section">
+              <h2>Who I Am</h2>
+              <div class="stack">
+                <p>
+                  Hi, I'm Andrew. I'm a developer and data analyst who believes in the power
+                  of both code and storytelling to make sense of our world. Based in Columbus, Ohio,
+                  I work at the intersection of technology and human experience.
+                </p>
+                <p>
+                  With 28 years of life experience and counting, I'm passionate about building
+                  digital experiences that matter and uncovering insights from data that tell
+                  meaningful stories. I approach every project with curiosity and a commitment
+                  to clean, purposeful design.
+                </p>
+                <p>
+                  When I'm not coding or analyzing data, you can find me exploring new ideas
+                  through writing, spending time with my fiancé Lucy, or discovering the stories
+                  that data has to tell.
+                </p>
+              </div>
+            </section>
+
+            <section class="skills-section">
+              <h2>What I Do</h2>
+              <div class="skills-grid">
+                <div class="skill-category">
+                  <h3>Development</h3>
+                  <p>Building modern web experiences with clean, maintainable code and attention to detail.</p>
+                </div>
+                <div class="skill-category">
+                  <h3>Data Analysis</h3>
+                  <p>Transforming complex datasets into actionable insights and compelling narratives.</p>
+                </div>
+                <div class="skill-category">
+                  <h3>Storytelling</h3>
+                  <p>Communicating ideas clearly and finding the human element in technical work.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="values-section">
+              <h2>What I Believe</h2>
+              <div class="stack">
+                <p>
+                  I believe in the power of simplicity over complexity, clarity over cleverness,
+                  and authentic human connection over algorithmic engagement. Every project should
+                  serve a real purpose and make someone's life better in some small way.
+                </p>
+                <p>
+                  Technology is a tool for human flourishing, not an end in itself. The best
+                  solutions are often the simplest ones, and the most important metric is whether
+                  something actually helps people accomplish their goals.
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <aside class="sidebar">
+          <div class="sidebar-card">
+            <h3>Get In Touch</h3>
+            <p>
+              Interested in working together or just want to chat?
+              I'd love to hear from you.
+            </p>
+            <a href="/contact" class="btn btn-primary">Contact Me</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-content {
+    padding: var(--space-16) 0;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+  }
+
+  .page-subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .main-content {
+    max-width: none;
+  }
+
+  .bio-section,
+  .skills-section,
+  .values-section {
+    padding: var(--space-8);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-secondary);
+  }
+
+  .bio-section h2,
+  .skills-section h2,
+  .values-section h2 {
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .skill-category {
+    padding: var(--space-4);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius);
+    background-color: var(--bg-tertiary);
+  }
+
+  .skill-category h3 {
+    color: var(--text-primary);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+  }
+
+  .skill-category p {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    margin: 0;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: calc(4rem + var(--space-8));
+  }
+
+  .sidebar-card {
+    padding: var(--space-6);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    background-color: var(--bg-secondary);
+    text-align: center;
+  }
+
+  .sidebar-card h3 {
+    color: var(--text-primary);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .sidebar-card p {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-6);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition);
+    border: 1px solid;
+  }
+
+  .btn-primary {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    border-color: var(--text-primary);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--text-secondary);
+    border-color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .page-content {
+      padding: var(--space-12) 0;
+    }
+
+    .page-header {
+      margin-bottom: var(--space-12);
+    }
+
+    .page-title {
+      font-size: var(--text-3xl);
+    }
+
+    .page-subtitle {
+      font-size: var(--text-base);
+    }
+
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .bio-section,
+    .skills-section,
+    .values-section {
+      padding: var(--space-6);
+    }
+
+    .sidebar {
+      position: static;
+    }
+  }
+</style>

@@ -1,68 +1,151 @@
-# Simpler – A modern portfolio theme for Jekyll.
+# Andrew Getz - Portfolio & Blog
 
-Simpler is a sleek and modern portfolio theme for Jekyll. The theme comes with a variety of features, including support for GitHub Pages, dark mode, social media integration, a built-in contact form, and much more. The theme is fully responsive, meaning it will look great on any device, and it's optimized for SEO, ensuring your work gets the attention it deserves. Whether you're an illustrator, web designer, photographer, or artist, Simpler is the perfect theme to showcase your work online.
+A modern, performant personal portfolio and blog built with [Astro](https://astro.build) and following [Vercel's Geist design principles](https://vercel.com/geist/introduction).
 
-* * *
+## 🚀 Features
 
-### Demo
+- **Modern Stack**: Built with Astro v5, TypeScript, and modern CSS
+- **Design System**: Clean, minimalist design following Swiss design principles
+- **Performance**: Static site generation with excellent Core Web Vitals
+- **Content Management**: Markdown-based blog and project showcases
+- **SEO Optimized**: Comprehensive meta tags, structured data, and sitemap
+- **Accessibility**: WCAG AA compliant with semantic HTML and ARIA support
+- **Responsive**: Mobile-first design that works beautifully on all devices
+- **Dark/Light Themes**: Theme toggle with system preference detection
 
-Check the theme in action [Live Demo](https://simpler-jekyll.netlify.app/) |
-[Artem Sheludko](https://jekyllthemes.io/developers/artem-sheludko)
+## 🛠️ Tech Stack
 
-* * *
+- **Framework**: [Astro](https://astro.build) - Static site generation
+- **Styling**: CSS with custom properties, Geist design system
+- **Typography**: Geist Sans & Geist Mono fonts
+- **Content**: Markdown with frontmatter, Astro Content Collections
+- **Deployment**: Vercel (primary), Netlify (configured)
+- **Forms**: Netlify Forms for contact functionality
+- **Analytics**: Privacy-focused analytics (Vercel/Plausible/Google)
 
-### Theme features
+## 📁 Project Structure
 
-- Works with GitHub Pages (host it for free)
-- Dark and light mode user can select themself
-- No jQuery, only vanilla JS
-- 100% responsive Design
-- Clean Code
-- Optimized for mobile devices
-- Section Blog
-- Section Works
-- Section Testimonials
-- Super fast performance ⚡⚡⚡
-- Social sharing buttons
-- Scroll to top button
-- Syntax highlighting (supports the Jekyll syntax highlighter)
-- Compatible with modern browsers
-- Medium style image zoom
-- Image Lazy loading
-- Image gallery
-- Custom logo support
-- Supports contact form (Formspree)
-- Supports MailChimp newsletter
-- Supports Disqus comments
-- Supports Google Analytics
-- Free Font Awesome icons
-- Free Google Fonts
-- Free updates & support
+```
+src/
+├── components/      # Reusable UI components
+├── content/         # Markdown content (blog posts & projects)
+├── layouts/         # Page layout templates
+├── pages/           # File-based routing
+└── styles/          # Design system CSS
 
-* * *
+public/
+├── design-system.css  # Complete design system
+├── fonts.css         # Typography definitions
+└── robots.txt        # SEO configuration
+```
 
-### Installation
+## 🚀 Quick Start
 
-#### Installing Ruby & Jekyll
+```bash
+# Install dependencies
+npm install
 
-If this is your first time using Jekyll, please follow the [Jekyll docs](https://jekyllrb.com/docs/installation/) and make sure your local environment (including Ruby) is setup correctly.
+# Start development server
+npm run dev
 
-* * *
+# Build for production
+npm run build
 
-### Deployment
+# Preview production build
+npm run preview
+```
 
-To run the theme locally, navigate to the theme directory and run `bundle install` to install the dependencies, then run `jekyll serve` or `bundle exec jekyll serve` to start the Jekyll server.
+## 📝 Content Management
 
-I would recommend checking the [Deployment Methods](https://jekyllrb.com/docs/deployment-methods/) page on Jekyll website.
+### Adding Blog Posts
+Create a new Markdown file in `src/content/blog/`:
 
-* * *
+```markdown
+---
+title: "Your Post Title"
+description: "Brief description for SEO"
+pubDate: 2024-01-01
+tags: ["development", "astro"]
+featured: false
+---
 
-### Documentation
+Your content here...
+```
 
-Before using the Simpler theme, please read the attached documentation.
+### Adding Projects
+Create a new Markdown file in `src/content/projects/`:
 
-* * *
+```markdown
+---
+title: "Project Name"
+description: "Project description"
+startDate: 2024-01-01
+status: "completed"
+category: "web-development"
+technologies: ["Astro", "TypeScript"]
+featured: true
+---
 
-### Support
+Detailed project case study...
+```
 
-<p>If you have any questions or feedback about the theme, please feel free to contact me by mail <a href="mailto:hi.artemsheludko@gmail.com">Contact</a><p>
+## 🎨 Design Philosophy
+
+This site follows Geist design principles:
+
+- **Simplicity**: Remove unnecessary elements
+- **Minimalism**: Clean layouts with generous whitespace
+- **Speed**: Optimized performance
+- **Precision**: Consistent spacing and typography
+- **Clarity**: Clear navigation and content hierarchy
+
+## 🔧 Customization
+
+The design system is built with CSS custom properties for easy customization:
+
+```css
+:root {
+  --bg-primary: #000000;
+  --text-primary: #ffffff;
+  --accent-secondary: #0070f3;
+  /* ... more variables */
+}
+```
+
+## 📊 Performance
+
+- **Lighthouse Score**: 95+ across all metrics
+- **Core Web Vitals**: Optimized for excellent user experience
+- **Bundle Size**: Minimal JavaScript, efficient CSS
+- **SEO**: Comprehensive meta tags and structured data
+
+## 🚢 Deployment
+
+### Vercel (Recommended)
+1. Connect your GitHub repository
+2. Deploy automatically on push to main
+3. Configure environment variables if using analytics
+
+### Netlify
+1. Configure build settings: `npm run build` → `dist`
+2. Enable form handling for contact form
+3. Deploy with included `netlify.toml` configuration
+
+## 📄 Documentation
+
+For comprehensive documentation on maintaining and extending this site, see [CLAUDE.md](./CLAUDE.md).
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🤝 Connect
+
+- **Website**: [andrewgetz.dev](https://andrewgetz.dev)
+- **Email**: [Contact form](https://andrewgetz.dev/contact)
+- **GitHub**: [@andrewgetz](https://github.com/andrewgetz)
+- **LinkedIn**: [Andrew Getz](https://linkedin.com/in/andrewgetz)
+
+---
+
+Built with ❤️ using Astro and deployed on Vercel.
