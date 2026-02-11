@@ -38,6 +38,15 @@
 }
 
 @font-face {
+  font-family: 'Geist Sans';
+  src: url('https://fonts.vercel.app/geist-sans/Geist-Black.woff2') format('woff2'),
+       url('/fonts/GeistSans-Black.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Geist Mono';
   src: url('https://fonts.vercel.app/geist-mono/GeistMono-Regular.woff2') format('woff2'),
        url('/fonts/GeistMono-Regular.woff2') format('woff2');

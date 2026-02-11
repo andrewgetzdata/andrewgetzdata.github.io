@@ -129,16 +129,21 @@ body {
 }
 
 /* Typography Hierarchy - Swiss Design Principles */
+/* Headers use Geist Sans with optimized display rendering */
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  font-weight: 600;
+  font-family: var(--font-geist-sans);
+  font-weight: 700;
   line-height: var(--leading-tight);
   color: var(--text-primary);
+  letter-spacing: -0.02em;
+  text-rendering: geometricPrecision;
 }
 
 h1 {
   font-size: var(--text-4xl);
   margin-bottom: var(--space-6);
+  font-weight: 800;
 }
 
 h2 {
@@ -166,23 +171,39 @@ h6 {
   margin-bottom: var(--space-2);
 }
 
+/* Body text uses Geist Sans */
 p {
   margin: 0 0 var(--space-4) 0;
+  font-family: var(--font-geist-sans);
   color: var(--text-secondary);
   line-height: var(--leading-relaxed);
 }
 
-/* Code and Monospace */
+/* Code and Monospace - Uses Geist Mono */
 code, pre, kbd, samp {
   font-family: var(--font-geist-mono);
 }
 
 code {
+  font-family: var(--font-geist-mono);
   font-size: 0.875em;
   background-color: var(--bg-tertiary);
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
+}
+
+pre {
+  font-family: var(--font-geist-mono);
+  padding: var(--space-4);
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
 }
 
 /* Links */
