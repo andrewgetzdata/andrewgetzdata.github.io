@@ -1,0 +1,403 @@
+---
+// Contact Page - Andrew Getz Portfolio
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact - Andrew Getz"
+  description="Get in touch with Andrew Getz for collaboration, questions, or just to say hello."
+>
+  <div class="contact-content">
+    <div class="container">
+      <div class="contact-header">
+        <h1 class="page-title">Get In Touch</h1>
+        <p class="page-subtitle">
+          I'd love to hear from you. Whether you're interested in working together,
+          have a question, or just want to say hello.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-form-section">
+          <form class="contact-form" id="contact-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-input"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-input"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                class="form-input"
+                placeholder="What's this about?"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-textarea"
+                rows="6"
+                placeholder="Tell me more..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                Send Message
+              </button>
+              <p class="form-note">
+                I'll get back to you as soon as possible.
+              </p>
+            </div>
+          </form>
+
+          <div class="form-success" id="form-success" style="display: none;">
+            <div class="success-message">
+              <h3>Message Sent!</h3>
+              <p>Thanks for reaching out. I'll get back to you soon.</p>
+              <button type="button" class="btn btn-secondary" onclick="resetForm()">
+                Send Another Message
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-info">
+          <div class="info-card">
+            <h2>Let's Connect</h2>
+            <div class="stack">
+              <p>
+                I'm always interested in hearing about new opportunities,
+                interesting projects, or just connecting with fellow developers
+                and data enthusiasts.
+              </p>
+
+              <div class="contact-details">
+                <div class="contact-item">
+                  <h3>Location</h3>
+                  <p>Columbus, Ohio</p>
+                </div>
+
+                <div class="contact-item">
+                  <h3>Response Time</h3>
+                  <p>I typically respond within 24 hours</p>
+                </div>
+
+                <div class="contact-item">
+                  <h3>Best For</h3>
+                  <ul>
+                    <li>Project collaborations</li>
+                    <li>Data analysis inquiries</li>
+                    <li>Technical questions</li>
+                    <li>Speaking opportunities</li>
+                    <li>General networking</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .contact-content {
+    padding: var(--space-16) 0;
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+  }
+
+  .page-subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .contact-form {
+    background-color: var(--bg-secondary);
+    padding: var(--space-8);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .form-group {
+    margin-bottom: var(--space-6);
+  }
+
+  .form-label {
+    display: block;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    padding: var(--space-3);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-geist-sans);
+    font-size: var(--text-base);
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    outline: none;
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 0 1px var(--accent-secondary);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-actions {
+    text-align: center;
+  }
+
+  .form-note {
+    margin-top: var(--space-4);
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius);
+    font-size: var(--text-base);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition);
+    border: 1px solid;
+    cursor: pointer;
+    background: none;
+    font-family: var(--font-geist-sans);
+  }
+
+  .btn-primary {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    border-color: var(--text-primary);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--text-secondary);
+    border-color: var(--text-secondary);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-primary);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+  }
+
+  .form-success {
+    background-color: var(--bg-secondary);
+    padding: var(--space-8);
+    border: 1px solid var(--accent-success);
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+
+  .success-message h3 {
+    color: var(--accent-success);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .success-message p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-6);
+  }
+
+  .info-card {
+    background-color: var(--bg-secondary);
+    padding: var(--space-8);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    position: sticky;
+    top: calc(4rem + var(--space-8));
+  }
+
+  .info-card h2 {
+    color: var(--text-primary);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-item {
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-item h3 {
+    color: var(--text-primary);
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+  }
+
+  .contact-item p {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    margin: 0;
+  }
+
+  .contact-item ul {
+    margin: 0;
+    padding-left: var(--space-5);
+    list-style: none;
+  }
+
+  .contact-item li {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-1);
+    position: relative;
+  }
+
+  .contact-item li::before {
+    content: "•";
+    color: var(--text-tertiary);
+    position: absolute;
+    left: -var(--space-4);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .contact-content {
+      padding: var(--space-12) 0;
+    }
+
+    .contact-header {
+      margin-bottom: var(--space-12);
+    }
+
+    .page-title {
+      font-size: var(--text-3xl);
+    }
+
+    .page-subtitle {
+      font-size: var(--text-base);
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .contact-form,
+    .info-card {
+      padding: var(--space-6);
+    }
+
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .info-card {
+      position: static;
+    }
+  }
+</style>
+
+<script>
+  // Contact form handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    const successDiv = document.getElementById('form-success');
+
+    if (form && successDiv) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // In a real implementation, you would send the form data to a server
+        // For now, we'll just show a success message
+        setTimeout(() => {
+          form.style.display = 'none';
+          successDiv.style.display = 'block';
+        }, 500);
+      });
+    }
+  });
+
+  function resetForm() {
+    const form = document.getElementById('contact-form');
+    const successDiv = document.getElementById('form-success');
+
+    if (form && successDiv) {
+      form.reset();
+      form.style.display = 'block';
+      successDiv.style.display = 'none';
+    }
+  }
+</script>

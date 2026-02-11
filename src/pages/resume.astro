@@ -1,0 +1,426 @@
+---
+// Resume Page - Andrew Getz Portfolio
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Resume - Andrew Getz"
+  description="Professional resume of Andrew Getz - developer, data analyst, and technical professional."
+>
+  <div class="resume-content">
+    <div class="container">
+      <div class="resume-header">
+        <div class="resume-title">
+          <h1>Andrew Getz</h1>
+          <p class="resume-subtitle">Developer & Data Analyst</p>
+        </div>
+        <div class="resume-actions">
+          <button onclick="window.print()" class="btn btn-primary">Print Resume</button>
+          <a href="/contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+      </div>
+
+      <div class="resume-body">
+        <div class="resume-grid">
+          <!-- Main Content -->
+          <div class="resume-main">
+            <section class="resume-section">
+              <h2>Professional Summary</h2>
+              <p>
+                Developer and data analyst with a passion for creating meaningful digital experiences
+                and extracting actionable insights from complex datasets. Combines technical expertise
+                with strong communication skills to bridge the gap between data and decision-making.
+                Committed to clean code, thoughtful design, and solving real-world problems.
+              </p>
+            </section>
+
+            <section class="resume-section">
+              <h2>Experience</h2>
+              <div class="experience-list">
+                <div class="experience-item">
+                  <div class="experience-header">
+                    <h3>Data Analyst & Developer</h3>
+                    <span class="experience-period">2020 - Present</span>
+                  </div>
+                  <p class="experience-company">Freelance & Contract Work</p>
+                  <ul class="experience-details">
+                    <li>Develop web applications and data analysis solutions for diverse clients</li>
+                    <li>Create interactive dashboards and reporting tools using modern web technologies</li>
+                    <li>Design and implement data processing pipelines and analytical workflows</li>
+                    <li>Collaborate with stakeholders to translate business requirements into technical solutions</li>
+                  </ul>
+                </div>
+
+                <!-- Additional experience items would go here -->
+                <div class="experience-item">
+                  <div class="experience-header">
+                    <h3>Previous Professional Experience</h3>
+                    <span class="experience-period">2015 - 2020</span>
+                  </div>
+                  <p class="experience-company">Various Organizations</p>
+                  <ul class="experience-details">
+                    <li>Developed analytical frameworks and reporting systems</li>
+                    <li>Improved data quality and process efficiency through automation</li>
+                    <li>Presented findings and recommendations to leadership teams</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section class="resume-section">
+              <h2>Education & Learning</h2>
+              <div class="education-list">
+                <div class="education-item">
+                  <h3>Continuous Learning</h3>
+                  <p>
+                    Self-directed study in modern web development, data science, and statistical analysis.
+                    Active participant in developer communities and ongoing professional development.
+                  </p>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="resume-sidebar">
+            <section class="resume-section">
+              <h2>Contact</h2>
+              <div class="contact-info">
+                <p>Columbus, Ohio</p>
+                <p><a href="/contact">Get in touch via contact form</a></p>
+              </div>
+            </section>
+
+            <section class="resume-section">
+              <h2>Technical Skills</h2>
+              <div class="skills-list">
+                <div class="skill-group">
+                  <h3>Development</h3>
+                  <ul>
+                    <li>JavaScript/TypeScript</li>
+                    <li>Python</li>
+                    <li>HTML/CSS</li>
+                    <li>React/Astro</li>
+                    <li>Node.js</li>
+                  </ul>
+                </div>
+
+                <div class="skill-group">
+                  <h3>Data Analysis</h3>
+                  <ul>
+                    <li>Statistical Analysis</li>
+                    <li>Data Visualization</li>
+                    <li>SQL</li>
+                    <li>Pandas/NumPy</li>
+                    <li>Streamlit</li>
+                  </ul>
+                </div>
+
+                <div class="skill-group">
+                  <h3>Tools</h3>
+                  <ul>
+                    <li>Git/GitHub</li>
+                    <li>VS Code</li>
+                    <li>Docker</li>
+                    <li>Linux/MacOS</li>
+                    <li>Jupyter</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <section class="resume-section">
+              <h2>Interests</h2>
+              <ul class="interests-list">
+                <li>Writing & Storytelling</li>
+                <li>Data Visualization</li>
+                <li>Open Source Projects</li>
+                <li>Minimalist Design</li>
+                <li>Continuous Learning</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .resume-content {
+    padding: var(--space-12) 0;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .resume-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 2px solid var(--border-primary);
+  }
+
+  .resume-title h1 {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+    color: var(--text-primary);
+  }
+
+  .resume-subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .resume-actions {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition);
+    border: 1px solid;
+    cursor: pointer;
+    background: none;
+    font-family: var(--font-geist-sans);
+  }
+
+  .btn-primary {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    border-color: var(--text-primary);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--text-secondary);
+    border-color: var(--text-secondary);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border-color: var(--border-primary);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--bg-hover);
+    border-color: var(--border-hover);
+    text-decoration: none;
+  }
+
+  .resume-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-12);
+  }
+
+  .resume-section {
+    margin-bottom: var(--space-10);
+  }
+
+  .resume-section h2 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--border-secondary);
+  }
+
+  .resume-section p {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+  }
+
+  .experience-item {
+    margin-bottom: var(--space-8);
+  }
+
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-2);
+  }
+
+  .experience-header h3 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .experience-period {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    font-weight: 500;
+  }
+
+  .experience-company {
+    font-size: var(--text-base);
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: var(--space-3);
+  }
+
+  .experience-details {
+    margin: 0;
+    padding-left: var(--space-5);
+  }
+
+  .experience-details li {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+  }
+
+  .resume-sidebar {
+    font-size: var(--text-sm);
+  }
+
+  .resume-sidebar .resume-section h2 {
+    font-size: var(--text-lg);
+  }
+
+  .contact-info p {
+    margin-bottom: var(--space-2);
+    color: var(--text-secondary);
+  }
+
+  .contact-info a {
+    color: var(--accent-secondary);
+    text-decoration: none;
+  }
+
+  .contact-info a:hover {
+    text-decoration: underline;
+  }
+
+  .skill-group {
+    margin-bottom: var(--space-6);
+  }
+
+  .skill-group h3 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-3);
+  }
+
+  .skill-group ul {
+    margin: 0;
+    padding-left: var(--space-4);
+    list-style: none;
+  }
+
+  .skill-group li {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-1);
+    position: relative;
+  }
+
+  .skill-group li::before {
+    content: "•";
+    color: var(--text-tertiary);
+    position: absolute;
+    left: -var(--space-3);
+  }
+
+  .interests-list {
+    margin: 0;
+    padding-left: var(--space-4);
+    list-style: none;
+  }
+
+  .interests-list li {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+    position: relative;
+  }
+
+  .interests-list li::before {
+    content: "•";
+    color: var(--text-tertiary);
+    position: absolute;
+    left: -var(--space-3);
+  }
+
+  /* Print Styles */
+  @media print {
+    .resume-content {
+      padding: 0;
+      max-width: none;
+    }
+
+    .resume-header {
+      margin-bottom: var(--space-8);
+      page-break-after: avoid;
+    }
+
+    .resume-actions {
+      display: none;
+    }
+
+    .resume-section {
+      page-break-inside: avoid;
+      margin-bottom: var(--space-6);
+    }
+
+    .experience-item {
+      page-break-inside: avoid;
+    }
+
+    body {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #000;
+      background: white;
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .resume-content {
+      padding: var(--space-8) 0;
+    }
+
+    .resume-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-6);
+    }
+
+    .resume-title h1 {
+      font-size: var(--text-3xl);
+    }
+
+    .resume-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .experience-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-1);
+    }
+
+    .btn {
+      font-size: var(--text-xs);
+      padding: var(--space-2) var(--space-3);
+    }
+  }
+</style>

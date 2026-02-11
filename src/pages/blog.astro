@@ -1,0 +1,304 @@
+---
+// Blog Page - Andrew Getz Portfolio
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Blog - Andrew Getz"
+  description="Articles and thoughts on development, data analysis, and the intersection of technology and storytelling."
+>
+  <div class="blog-content">
+    <div class="container">
+      <div class="blog-header">
+        <h1 class="page-title">Blog</h1>
+        <p class="page-subtitle">
+          Thoughts on development, data analysis, and the intersection of technology and storytelling.
+        </p>
+      </div>
+
+      <div class="blog-grid">
+        <div class="blog-main">
+          <!-- Coming Soon Message -->
+          <div class="coming-soon">
+            <div class="coming-soon-content">
+              <h2>Coming Soon</h2>
+              <p>
+                I'm currently working on setting up the blog system. This space will soon
+                feature articles about development, data analysis, and the stories that
+                emerge from the intersection of technology and human experience.
+              </p>
+              <p>
+                In the meantime, feel free to <a href="/contact">get in touch</a> if you'd
+                like to discuss any topics or have questions about my work.
+              </p>
+            </div>
+          </div>
+
+          <!-- Future blog posts will appear here -->
+          <div class="blog-preview">
+            <h2>What to Expect</h2>
+            <div class="preview-topics">
+              <div class="topic-card">
+                <h3>Development Insights</h3>
+                <p>Lessons learned from building web applications with modern tools and frameworks.</p>
+              </div>
+
+              <div class="topic-card">
+                <h3>Data Stories</h3>
+                <p>Exploring how data can tell compelling stories and drive meaningful decisions.</p>
+              </div>
+
+              <div class="topic-card">
+                <h3>Process & Workflow</h3>
+                <p>Thoughts on productive workflows, tools, and approaches to technical work.</p>
+              </div>
+
+              <div class="topic-card">
+                <h3>Learning Journey</h3>
+                <p>Reflections on continuous learning and growth in the tech industry.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-sidebar">
+          <div class="sidebar-card">
+            <h3>Subscribe</h3>
+            <p>
+              Want to be notified when new articles are published?
+            </p>
+            <a href="/contact" class="btn btn-primary">Get In Touch</a>
+          </div>
+
+          <div class="sidebar-card">
+            <h3>Topics</h3>
+            <ul class="topics-list">
+              <li>Web Development</li>
+              <li>Data Analysis</li>
+              <li>Storytelling</li>
+              <li>Process & Workflow</li>
+              <li>Learning & Growth</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-content {
+    padding: var(--space-16) 0;
+  }
+
+  .blog-header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .page-title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+  }
+
+  .page-subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-12);
+    align-items: start;
+  }
+
+  .coming-soon {
+    background-color: var(--bg-secondary);
+    padding: var(--space-10);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-bottom: var(--space-12);
+  }
+
+  .coming-soon h2 {
+    color: var(--text-primary);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+  }
+
+  .coming-soon p {
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-4);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .coming-soon a {
+    color: var(--accent-secondary);
+    text-decoration: none;
+  }
+
+  .coming-soon a:hover {
+    text-decoration: underline;
+  }
+
+  .blog-preview h2 {
+    color: var(--text-primary);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    margin-bottom: var(--space-8);
+    text-align: center;
+  }
+
+  .preview-topics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+  }
+
+  .topic-card {
+    background-color: var(--bg-secondary);
+    padding: var(--space-6);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--transition);
+  }
+
+  .topic-card:hover {
+    border-color: var(--border-hover);
+  }
+
+  .topic-card h3 {
+    color: var(--text-primary);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-3);
+  }
+
+  .topic-card p {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    margin: 0;
+  }
+
+  .blog-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    position: sticky;
+    top: calc(4rem + var(--space-8));
+  }
+
+  .sidebar-card {
+    background-color: var(--bg-secondary);
+    padding: var(--space-6);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+  }
+
+  .sidebar-card h3 {
+    color: var(--text-primary);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+  }
+
+  .sidebar-card p {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-4);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all var(--transition);
+    border: 1px solid;
+  }
+
+  .btn-primary {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    border-color: var(--text-primary);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--text-secondary);
+    border-color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  .topics-list {
+    margin: 0;
+    padding-left: var(--space-4);
+    list-style: none;
+  }
+
+  .topics-list li {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-2);
+    position: relative;
+  }
+
+  .topics-list li::before {
+    content: "•";
+    color: var(--text-tertiary);
+    position: absolute;
+    left: -var(--space-3);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .blog-content {
+      padding: var(--space-12) 0;
+    }
+
+    .blog-header {
+      margin-bottom: var(--space-12);
+    }
+
+    .page-title {
+      font-size: var(--text-3xl);
+    }
+
+    .page-subtitle {
+      font-size: var(--text-base);
+    }
+
+    .blog-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+    }
+
+    .coming-soon {
+      padding: var(--space-8);
+    }
+
+    .preview-topics {
+      grid-template-columns: 1fr;
+    }
+
+    .blog-sidebar {
+      position: static;
+    }
+  }
+</style>

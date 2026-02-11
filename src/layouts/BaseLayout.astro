@@ -59,7 +59,20 @@ import ThemeToggle from '../components/ThemeToggle.astro';
           <a href="/" class="brand-link">Andrew Getz</a>
         </div>
 
+        <div class="nav-menu">
+          <nav class="primary-nav">
+            <a href="/about" class="nav-link">About</a>
+            <a href="/resume" class="nav-link">Resume</a>
+            <a href="/blog" class="nav-link">Blog</a>
+            <a href="/work" class="nav-link">Work</a>
+            <a href="/contact" class="nav-link">Contact</a>
+          </nav>
+        </div>
+
         <div class="nav-actions">
+          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
+            <span class="hamburger">☰</span>
+          </button>
           <ThemeToggle />
         </div>
       </nav>
@@ -90,6 +103,38 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 
       document.documentElement.setAttribute('data-theme', theme);
     })();
+
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+      const navMenu = document.querySelector('.nav-menu');
+
+      if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', function() {
+          navMenu.classList.toggle('open');
+          const isOpen = navMenu.classList.contains('open');
+          mobileMenuToggle.setAttribute('aria-expanded', isOpen.toString());
+        });
+
+        // Close mobile menu when clicking nav links
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            navMenu.classList.remove('open');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+          const isClickInsideNav = navMenu.contains(event.target) || mobileMenuToggle.contains(event.target);
+          if (!isClickInsideNav && navMenu.classList.contains('open')) {
+            navMenu.classList.remove('open');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>
@@ -145,6 +190,46 @@ import ThemeToggle from '../components/ThemeToggle.astro';
     text-decoration: none;
   }
 
+  .nav-menu {
+    display: flex;
+    align-items: center;
+  }
+
+  .primary-nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .nav-link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    padding: var(--space-2) 0;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .nav-link.active {
+    color: var(--text-primary);
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: var(--text-primary);
+  }
+
   .nav-actions {
     display: flex;
     align-items: center;
@@ -180,6 +265,17 @@ import ThemeToggle from '../components/ThemeToggle.astro';
     color: var(--accent-secondary);
   }
 
+  /* Mobile Navigation */
+  .mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border-primary);
+    color: var(--text-primary);
+    padding: var(--space-2);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+
   /* Responsive Design */
   @media (max-width: 768px) {
     .nav {
@@ -188,6 +284,42 @@ import ThemeToggle from '../components/ThemeToggle.astro';
 
     .brand-link {
       font-size: var(--text-base);
+    }
+
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: var(--bg-primary);
+      border-top: 1px solid var(--border-primary);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .nav-menu.open {
+      display: block;
+    }
+
+    .primary-nav {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: var(--space-4);
+    }
+
+    .nav-link {
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--border-secondary);
+    }
+
+    .nav-link:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu-toggle {
+      display: block;
     }
 
     .footer-text {
