@@ -171,6 +171,49 @@ h6 {
   margin-bottom: var(--space-2);
 }
 
+/* Pixel Typography - Retro Gaming Style */
+.pixel-heading,
+h1.pixel,
+h2.pixel,
+h3.pixel,
+h4.pixel,
+h5.pixel,
+h6.pixel {
+  font-family: var(--font-pixel-square);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-rendering: pixelated;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  line-height: var(--leading-snug);
+}
+
+.pixel-grid {
+  font-family: var(--font-pixel-grid);
+}
+
+.pixel-circle {
+  font-family: var(--font-pixel-circle);
+}
+
+/* Pixel heading sizes - adjusted for readability */
+h1.pixel {
+  font-size: calc(var(--text-3xl) * 0.8);
+  line-height: 1.2;
+}
+
+h2.pixel {
+  font-size: calc(var(--text-2xl) * 0.8);
+  line-height: 1.2;
+}
+
+h3.pixel {
+  font-size: calc(var(--text-xl) * 0.8);
+  line-height: 1.2;
+}
+
 /* Body text uses Geist Sans */
 p {
   margin: 0 0 var(--space-4) 0;

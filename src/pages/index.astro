@@ -11,7 +11,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">Andrew Getz</h1>
+        <h1 class="hero-title pixel">Andrew Getz</h1>
         <p class="hero-subtitle">Developer, Data Analyst & Storyteller</p>
         <p class="hero-description">
           Building digital experiences and uncovering insights from data.
@@ -40,6 +40,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <h2>Heading 2 - Section Title</h2>
             <h3>Heading 3 - Subsection</h3>
             <h4>Heading 4 - Component Title</h4>
+          </div>
+        </div>
+
+        <div class="pixel-demo">
+          <h3>Pixel Typography</h3>
+          <div class="stack">
+            <h2 class="pixel">What will you ship next?</h2>
+            <h3 class="pixel pixel-grid">Grid Style Heading</h3>
+            <h3 class="pixel pixel-circle">Circle Style Heading</h3>
+            <p class="pixel-description">
+              Retro pixel fonts inspired by classic gaming aesthetics.
+              Perfect for headings that need that nostalgic touch.
+            </p>
+          </div>
+        </div>
+
+        <div class="regular-demo">
+          <h3>Regular Typography</h3>
+          <div class="stack">
             <p>
               This is body text using <strong>Geist Sans</strong> with proper line height
               and spacing following Swiss design principles. The text maintains excellent
@@ -155,12 +174,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .typography-demo,
+  .pixel-demo,
+  .regular-demo,
   .colors-demo,
   .spacing-demo {
     padding: var(--space-6);
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-lg);
     background-color: var(--bg-secondary);
+  }
+
+  .pixel-description {
+    font-size: var(--text-sm);
+    color: var(--text-tertiary);
+    margin-top: var(--space-2);
   }
 
   .color-grid {
