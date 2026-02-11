@@ -1,0 +1,198 @@
+---
+// Base Layout - Foundation for all pages
+// Implements Geist design system and Swiss design principles
+
+export interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description = "Andrew Getz's portfolio and personal website", ogImage } = Astro.props;
+
+// Import components
+import ThemeToggle from '../components/ThemeToggle.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- SEO Meta Tags -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  {ogImage && <meta property="og:image" content={ogImage} />}
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+  <!-- Preload Critical Resources -->
+  <link rel="preconnect" href="https://fonts.vercel.app" />
+
+  <!-- Import Design System Styles -->
+  <link rel="stylesheet" href="/fonts.css" />
+  <link rel="stylesheet" href="/design-system.css" />
+</head>
+
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- Header with Navigation and Theme Toggle -->
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <div class="nav-brand">
+          <a href="/" class="brand-link">Andrew Getz</a>
+        </div>
+
+        <div class="nav-actions">
+          <ThemeToggle />
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main id="main" class="main-content">
+    <slot />
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="footer-text">
+        © {new Date().getFullYear()} Andrew Getz. Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Theme initialization script - runs before page render -->
+  <script is:inline>
+    // Prevent flash of incorrect theme
+    (function() {
+      const storedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</body>
+</html>
+
+<style>
+  /* Skip Link for Accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--accent-secondary);
+    color: var(--text-inverse);
+    padding: var(--space-2) var(--space-4);
+    text-decoration: none;
+    border-radius: var(--radius);
+    z-index: 1000;
+    transition: top var(--transition-fast);
+  }
+
+  .skip-link:focus {
+    top: 6px;
+  }
+
+  /* Header Styles */
+  .site-header {
+    border-bottom: 1px solid var(--border-primary);
+    background-color: var(--bg-primary);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) 0;
+    min-height: 4rem;
+  }
+
+  .brand-link {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .brand-link:hover {
+    color: var(--accent-secondary);
+    text-decoration: none;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  /* Main Content */
+  .main-content {
+    flex: 1;
+    min-height: calc(100vh - 8rem);
+  }
+
+  /* Footer */
+  .site-footer {
+    border-top: 1px solid var(--border-primary);
+    margin-top: auto;
+  }
+
+  .footer-text {
+    text-align: center;
+    color: var(--text-tertiary);
+    font-size: var(--text-sm);
+    padding: var(--space-8) 0;
+    margin: 0;
+  }
+
+  .footer-text a {
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .footer-text a:hover {
+    color: var(--accent-secondary);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .nav {
+      padding: var(--space-3) 0;
+    }
+
+    .brand-link {
+      font-size: var(--text-base);
+    }
+
+    .footer-text {
+      padding: var(--space-6) 0;
+      font-size: var(--text-xs);
+    }
+  }
+</style>
