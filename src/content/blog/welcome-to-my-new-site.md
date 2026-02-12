@@ -4,6 +4,8 @@ description: "Introducing my redesigned portfolio built with Astro and following
 pubDate: 2026-02-11
 tags: ["announcement", "design", "astro"]
 featured: true
+type: "writing"
+category: "web-development"
 image:
   src: "/images/new-site-hero.jpg"
   alt: "Screenshot of the new portfolio design"

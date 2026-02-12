@@ -1,232 +1,267 @@
 ---
 // Homepage - Andrew Getz Portfolio
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SocialLinks from '../components/SocialLinks.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SocialLinks from "../components/SocialLinks.astro";
 
 // Aggregate all content
-const blogPosts = (await getCollection('blog'))
-  .filter(p => !p.data.draft)
-  .map(p => ({
-    ...p,
-    contentType: 'writing' as const,
-    date: p.data.pubDate,
-    href: `/blog/${p.slug}/`,
-  }));
+const blogPosts = (await getCollection("blog"))
+    .filter((p) => !p.data.draft)
+    .map((p) => ({
+        ...p,
+        contentType: "writing" as const,
+        date: p.data.pubDate,
+        href: `/blog/${p.slug}/`,
+    }));
 
-const projects = (await getCollection('projects'))
-  .filter(p => p.data.status !== 'archived')
-  .map(p => ({
-    ...p,
-    contentType: 'work' as const,
-    date: p.data.startDate,
-    href: `/work/${p.slug}/`,
-  }));
+const projects = (await getCollection("projects"))
+    .filter((p) => p.data.status !== "archived")
+    .map((p) => ({
+        ...p,
+        contentType: "work" as const,
+        date: p.data.startDate,
+        href: `/work/${p.slug}/`,
+    }));
 
 const featured = [...blogPosts, ...projects]
-  .filter(c => c.data.featured)
-  .sort((a, b) => b.date.getTime() - a.date.getTime());
+    .filter((c) => c.data.featured)
+    .sort((a, b) => b.date.getTime() - a.date.getTime());
 
 function formatDate(date: Date): string {
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+    return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+    });
 }
 ---
 
 <BaseLayout
-  title="Andrew Getz - Developer & Data Analyst"
-  description="Personal portfolio of Andrew Getz - developer, data analyst, and storyteller from Columbus, Ohio."
+    title="Andrew Getz - Developer & Data Analyst"
+    description="Personal portfolio of Andrew Getz - developer, data analyst, and storyteller from Columbus, Ohio."
 >
-  <div class="page-container">
-    <!-- Hero + About -->
-    <section class="section">
-      <h1>Andrew Getz</h1>
-      <p class="subtitle">Developer, Data Analyst & Storyteller</p>
-      <p>
-        Hi, I'm Andrew. I'm a developer and data analyst based in Columbus, Ohio.
-        I work at the intersection of technology and human experience -- building
-        digital experiences and uncovering insights from data that tell meaningful stories.
-      </p>
-    </section>
+    <div class="page-container">
+        <!-- Hero + About -->
+        <section class="section">
+            <h2 class="subtitle">I make data do things</h2>
+            <p>
+                Hi, I'm Andrew. I'm a developer and data analyst based in
+                Columbus, Ohio. I work at the intersection of technology and
+                human experience -- building digital experiences and uncovering
+                insights from data that tell meaningful stories.
+            </p>
+        </section>
 
-    <hr />
+        <div class="divider" aria-hidden="true"></div>
 
-    <!-- Featured -->
-    <section class="section" id="featured">
-      <h2>Featured</h2>
-      <div class="items">
-        {featured.map(item => (
-          <a href={item.href} class="item">
-            <div class="item-top">
-              <h3 class="item-title">{item.data.title}</h3>
-              <div class="item-badges">
-                <span class={`badge badge-${item.contentType}`}>{item.contentType}</span>
-                {item.contentType === 'work' && 'status' in item.data && (
-                  <span class={`badge badge-${item.data.status}`}>{(item.data.status as string).replace('-', ' ')}</span>
-                )}
-                {item.contentType === 'work' && 'category' in item.data && (
-                  <span class={`badge badge-${item.data.category}`}>{(item.data.category as string).replace('-', ' ')}</span>
-                )}
-              </div>
+        <!-- What I'm Exploring Now -->
+        <section class="section" id="exploring">
+            <h2>What I'm Exploring Now</h2>
+            <p>
+                Currently exploring AI-powered workflows, building data
+                pipelines, and experimenting with new ways to make complex
+                information more accessible. More details coming soon.
+            </p>
+        </section>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <!-- Featured -->
+        <section class="section" id="featured">
+            <h2>Featured</h2>
+            <div class="items">
+                {
+                    featured.map((item) => (
+                        <a href={item.href} class="item">
+                            <div class="item-top">
+                                <h3 class="item-title">{item.data.title}</h3>
+                                <div class="item-badges">
+                                    <span class="badge badge-gray-subtle">
+                                        {item.contentType}
+                                    </span>
+                                    {item.contentType === "work" &&
+                                        "category" in item.data && (
+                                            <span class="badge badge-teal-subtle">
+                                                {(
+                                                    item.data.category as string
+                                                ).replace("-", " ")}
+                                            </span>
+                                        )}
+                                </div>
+                            </div>
+                            <p class="item-desc">{item.data.description}</p>
+                            <div class="item-bottom">
+                                <div class="item-tags">
+                                    {item.data.tags.slice(0, 3).map((tag: string) => (
+                                        <span class="badge badge-amber-subtle">{tag}</span>
+                                    ))}
+                                </div>
+                                <span class="item-date">
+                                    {formatDate(item.date)} &rarr;
+                                </span>
+                            </div>
+                        </a>
+                    ))
+                }
             </div>
-            <p class="item-desc">{item.data.description}</p>
-            <div class="item-bottom">
-              <span class="item-tags">
-                {item.data.tags.slice(0, 3).join(' \u00B7 ')}
-              </span>
-              <span class="item-date">{formatDate(item.date)} &rarr;</span>
-            </div>
-          </a>
-        ))}
-      </div>
-      <a href="/work" class="view-all">View all work &rarr;</a>
-    </section>
+            <a href="/work" class="view-all">View all work &rarr;</a>
+        </section>
 
-    <hr />
+        <div class="divider" aria-hidden="true"></div>
 
-    <!-- Contact -->
-    <section class="section" id="contact">
-      <h2>Get In Touch</h2>
-      <p>
-        Want to work together or just say hi?
-        The fastest way to reach me is a DM.
-      </p>
-      <SocialLinks layout="horizontal" showLabels={true} size="md" />
-    </section>
-  </div>
+        <!-- Contact -->
+        <section class="section" id="contact">
+            <h2>Get In Touch</h2>
+            <p>
+                Want to work together or just say hi? The fastest way to reach
+                me is a DM.
+            </p>
+            <SocialLinks layout="horizontal" showLabels={true} size="md" />
+        </section>
+    </div>
 </BaseLayout>
 
 <style>
-  .page-container {
-    max-width: 48rem;
-    margin: 0 auto;
-    padding: var(--space-16) var(--space-6);
-  }
-
-  .section {
-    padding: var(--space-12) 0;
-  }
-
-  .subtitle {
-    font-size: var(--text-xl);
-    color: var(--text-secondary);
-    font-weight: 500;
-    margin-bottom: var(--space-6);
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid var(--border-primary);
-    margin: 0;
-  }
-
-  /* Content items */
-  .items {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-    margin-top: var(--space-6);
-  }
-
-  .item {
-    display: block;
-    padding: var(--space-6);
-    border: 1px solid var(--border-primary);
-    border-radius: var(--radius);
-    background: var(--bg-secondary);
-    text-decoration: none;
-    transition: border-color var(--transition-fast);
-  }
-
-  .item:hover {
-    border-color: var(--border-hover);
-    text-decoration: none;
-  }
-
-  .item-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--space-4);
-    margin-bottom: var(--space-2);
-  }
-
-  .item-title {
-    margin: 0;
-    font-family: var(--font-pixel-circle);
-    font-size: var(--text-base);
-    font-weight: 700;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    line-height: var(--leading-tight);
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: unset;
-  }
-
-  .item-badges {
-    display: flex;
-    gap: var(--space-1);
-    flex-shrink: 0;
-    flex-wrap: wrap;
-  }
-
-  .item-desc {
-    color: var(--text-secondary);
-    font-size: var(--text-sm);
-    line-height: var(--leading-normal);
-    margin-bottom: var(--space-3);
-  }
-
-  .item-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--space-4);
-  }
-
-  .item-tags {
-    font-size: var(--text-xs);
-    color: var(--text-tertiary);
-  }
-
-  .item-date {
-    font-size: var(--text-xs);
-    color: var(--text-tertiary);
-    white-space: nowrap;
-  }
-
-  .view-all {
-    display: inline-block;
-    margin-top: var(--space-6);
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-  }
-
-  .view-all:hover {
-    color: var(--text-primary);
-  }
-
-  @media (max-width: 768px) {
     .page-container {
-      padding: var(--space-8) var(--space-4);
+        max-width: 48rem;
+        margin: 0 auto;
+        padding: 0 var(--space-6) var(--space-8);
     }
 
     .section {
-      padding: var(--space-8) 0;
+        padding: var(--space-6) 0;
+    }
+
+    .section p:last-child {
+        margin-bottom: 0;
+    }
+
+    .subtitle {
+        margin-bottom: var(--space-4);
+    }
+
+    .divider {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        user-select: none;
+    }
+
+    .divider::after {
+        content: "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+        font-family: var(--font-geist-mono);
+        font-size: var(--text-xs);
+        color: var(--text-tertiary);
+    }
+
+    /* Content items */
+    .items {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+        margin-top: var(--space-6);
+    }
+
+    .item {
+        display: block;
+        padding: var(--space-6);
+        border: 1px solid var(--border-primary);
+        border-radius: var(--radius);
+        background: var(--bg-secondary);
+        text-decoration: none;
+        transition: border-color var(--transition-fast);
+    }
+
+    .item:hover {
+        border-color: var(--border-hover);
+        text-decoration: none;
     }
 
     .item-top {
-      flex-direction: column;
-      gap: var(--space-2);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: var(--space-4);
+        margin-bottom: var(--space-2);
+    }
+
+    .item-title {
+        margin: 0;
+        font-family: var(--font-pixel-square);
+        font-size: var(--text-base);
+        font-weight: 500;
+        color: var(--text-primary);
+        text-transform: lowercase;
+        letter-spacing: 0.02em;
+        line-height: var(--leading-tight);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .item-badges {
+        display: flex;
+        gap: var(--space-1);
+        flex-shrink: 0;
+        flex-wrap: wrap;
+    }
+
+    .item-desc {
+        color: var(--text-secondary);
+        font-size: var(--text-sm);
+        line-height: var(--leading-normal);
+        margin-bottom: var(--space-3);
     }
 
     .item-bottom {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: var(--space-4);
     }
-  }
+
+    .item-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1);
+    }
+
+    .item-date {
+        font-size: var(--text-xs);
+        color: var(--text-tertiary);
+        white-space: nowrap;
+    }
+
+    .view-all {
+        display: inline-block;
+        margin-top: var(--space-6);
+        font-size: var(--text-sm);
+        font-weight: 500;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+    }
+
+    .view-all:hover {
+        color: var(--text-primary);
+    }
+
+    @media (max-width: 768px) {
+        .page-container {
+            padding: var(--space-6) var(--space-4);
+        }
+
+        .section {
+            padding: var(--space-4) 0;
+        }
+
+        .item-top {
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .item-bottom {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--space-1);
+        }
+    }
 </style>

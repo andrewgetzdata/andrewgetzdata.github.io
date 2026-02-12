@@ -4,6 +4,8 @@ description: "Exploring the parallels between writing and programming, and how b
 pubDate: 2026-01-15
 tags: ["writing", "development", "process", "craft"]
 featured: false
+type: "writing"
+category: "content"
 ---
 
 I've been thinking lately about the similarities between writing and software development. Both are fundamentally about communication—whether you're communicating with future developers (including yourself) or with readers trying to understand an idea.

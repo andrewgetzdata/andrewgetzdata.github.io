@@ -8,6 +8,7 @@ featured: true
 category: "data-analysis"
 tags: ["python", "streamlit", "data-visualization", "pandas"]
 technologies: ["Python", "Streamlit", "Pandas", "Plotly", "PostgreSQL"]
+type: "work"
 client: "Local Business Client"
 image:
   src: "/images/dashboard-hero.jpg"
