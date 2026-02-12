@@ -55,7 +55,6 @@ const structuredData = {
 
 // Import components
 import ThemeToggle from '../components/ThemeToggle.astro';
-import SocialLinks from '../components/SocialLinks.astro';
 import Analytics from '../components/Analytics.astro';
 ---
 
@@ -120,30 +119,17 @@ import Analytics from '../components/Analytics.astro';
 
   <!-- Header with Navigation and Theme Toggle -->
   <header class="site-header">
-    <div class="container">
-      <nav class="nav">
-        <div class="nav-brand">
-          <a href="/" class="brand-link">Andrew Getz</a>
-        </div>
+    <nav class="nav">
+      <div class="nav-brand">
+        <a href="/" class="brand-link">Andrew Getz</a>
+      </div>
 
-        <div class="nav-menu">
-          <nav class="primary-nav">
-            <a href="/about" class="nav-link">About</a>
-            <a href="/resume" class="nav-link">Resume</a>
-            <a href="/blog" class="nav-link">Blog</a>
-            <a href="/work" class="nav-link">Work</a>
-            <a href="/contact" class="nav-link">Contact</a>
-          </nav>
-        </div>
-
-        <div class="nav-actions">
-          <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
-            <span class="hamburger">☰</span>
-          </button>
-          <ThemeToggle />
-        </div>
-      </nav>
-    </div>
+      <div class="nav-right">
+        <a href="/work" class="nav-link">Work</a>
+        <a href="/resume" class="nav-link">Resume</a>
+        <ThemeToggle />
+      </div>
+    </nav>
   </header>
 
   <!-- Main Content Area -->
@@ -154,59 +140,20 @@ import Analytics from '../components/Analytics.astro';
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-content">
-        <div class="footer-social">
-          <SocialLinks layout="horizontal" size="sm" />
-        </div>
-        <p class="footer-text">
-          © {new Date().getFullYear()} Andrew Getz. Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>.
-        </p>
-      </div>
+      <p class="footer-text">
+        &copy; {new Date().getFullYear()} Andrew Getz. Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>.
+      </p>
     </div>
   </footer>
 
   <!-- Theme initialization script - runs before page render -->
   <script is:inline>
-    // Prevent flash of incorrect theme
     (function() {
-      const storedTheme = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
-
+      var stored = localStorage.getItem('theme');
+      var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = stored || (systemDark ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
     })();
-
-    // Mobile menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-      const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-      const navMenu = document.querySelector('.nav-menu');
-
-      if (mobileMenuToggle && navMenu) {
-        mobileMenuToggle.addEventListener('click', function() {
-          navMenu.classList.toggle('open');
-          const isOpen = navMenu.classList.contains('open');
-          mobileMenuToggle.setAttribute('aria-expanded', isOpen.toString());
-        });
-
-        // Close mobile menu when clicking nav links
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-          link.addEventListener('click', function() {
-            navMenu.classList.remove('open');
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-          });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-          const isClickInsideNav = navMenu.contains(event.target) || mobileMenuToggle.contains(event.target);
-          if (!isClickInsideNav && navMenu.classList.contains('open')) {
-            navMenu.classList.remove('open');
-            mobileMenuToggle.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-    });
   </script>
 </body>
 </html>
@@ -230,30 +177,30 @@ import Analytics from '../components/Analytics.astro';
     top: 6px;
   }
 
-  /* Header Styles */
+  /* Header Styles - Flat nav, flows with content */
   .site-header {
-    border-bottom: 1px solid var(--border-primary);
-    background-color: var(--bg-primary);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
   }
 
   .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-4) 0;
-    min-height: 4rem;
+    padding: var(--space-6) 0;
   }
 
   .brand-link {
-    font-size: var(--text-lg);
-    font-weight: 600;
+    font-family: var(--font-pixel-circle);
+    font-size: var(--text-2xl);
+    font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
     transition: color var(--transition-fast);
   }
 
@@ -262,50 +209,24 @@ import Analytics from '../components/Analytics.astro';
     text-decoration: none;
   }
 
-  .nav-menu {
-    display: flex;
-    align-items: center;
-  }
-
-  .primary-nav {
+  .nav-right {
     display: flex;
     align-items: center;
     gap: var(--space-6);
   }
 
   .nav-link {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     font-weight: 500;
     color: var(--text-secondary);
     text-decoration: none;
     transition: color var(--transition-fast);
     padding: var(--space-2) 0;
-    position: relative;
   }
 
   .nav-link:hover {
     color: var(--text-primary);
     text-decoration: none;
-  }
-
-  .nav-link.active {
-    color: var(--text-primary);
-  }
-
-  .nav-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: var(--text-primary);
-  }
-
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
   }
 
   /* Main Content */
@@ -320,23 +241,11 @@ import Analytics from '../components/Analytics.astro';
     margin-top: auto;
   }
 
-  .footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-6);
-    padding: var(--space-8) 0;
-  }
-
-  .footer-social {
-    display: flex;
-    justify-content: center;
-  }
-
   .footer-text {
     text-align: center;
     color: var(--text-tertiary);
     font-size: var(--text-sm);
+    padding: var(--space-8) 0;
     margin: 0;
   }
 
@@ -349,61 +258,26 @@ import Analytics from '../components/Analytics.astro';
     color: var(--accent-secondary);
   }
 
-  /* Mobile Navigation */
-  .mobile-menu-toggle {
-    display: none;
-    background: none;
-    border: 1px solid var(--border-primary);
-    color: var(--text-primary);
-    padding: var(--space-2);
-    border-radius: var(--radius);
-    cursor: pointer;
-  }
-
-  /* Responsive Design */
+  /* Responsive */
   @media (max-width: 768px) {
+    .site-header {
+      padding: 0 var(--space-4);
+    }
+
     .nav {
-      padding: var(--space-3) 0;
+      padding: var(--space-4) 0;
     }
 
     .brand-link {
-      font-size: var(--text-base);
+      font-size: var(--text-lg);
     }
 
-    .nav-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background-color: var(--bg-primary);
-      border-top: 1px solid var(--border-primary);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-    }
-
-    .nav-menu.open {
-      display: block;
-    }
-
-    .primary-nav {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-      padding: var(--space-4);
+    .nav-right {
+      gap: var(--space-4);
     }
 
     .nav-link {
-      padding: var(--space-3) 0;
-      border-bottom: 1px solid var(--border-secondary);
-    }
-
-    .nav-link:last-child {
-      border-bottom: none;
-    }
-
-    .mobile-menu-toggle {
-      display: block;
+      font-size: var(--text-sm);
     }
 
     .footer-text {

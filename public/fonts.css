@@ -38,6 +38,15 @@
 }
 
 @font-face {
+  font-family: 'Geist Sans';
+  src: url('https://fonts.vercel.app/geist-sans/Geist-Black.woff2') format('woff2'),
+       url('/fonts/GeistSans-Black.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'Geist Mono';
   src: url('https://fonts.vercel.app/geist-mono/GeistMono-Regular.woff2') format('woff2'),
        url('/fonts/GeistMono-Regular.woff2') format('woff2');
@@ -64,8 +73,36 @@
   font-display: swap;
 }
 
+/* Geist Pixel Fonts - Multiple pixel variants */
+@font-face {
+  font-family: 'Geist Pixel Square';
+  src: url('/fonts/geist-pixel/GeistPixel-Square.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Pixel Grid';
+  src: url('/fonts/geist-pixel/GeistPixel-Grid.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Pixel Circle';
+  src: url('/fonts/geist-pixel/GeistPixel-Circle.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Font Stack Definitions */
 :root {
   --font-geist-sans: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --font-geist-mono: 'Geist Mono', ui-monospace, 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', monospace;
+  --font-pixel-square: 'Geist Pixel Square', 'Geist Mono', ui-monospace, monospace;
+  --font-pixel-grid: 'Geist Pixel Grid', 'Geist Mono', ui-monospace, monospace;
+  --font-pixel-circle: 'Geist Pixel Circle', 'Geist Mono', ui-monospace, monospace;
 }

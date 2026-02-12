@@ -114,6 +114,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -128,12 +129,18 @@ body {
   transition: background-color var(--transition), color var(--transition);
 }
 
-/* Typography Hierarchy - Swiss Design Principles */
-h1, h2, h3, h4, h5, h6 {
+/* Typography Hierarchy */
+/* H1/H2 use pixel circle font by default, H3+ use Geist Sans */
+h1, h2 {
   margin: 0;
-  font-weight: 600;
-  line-height: var(--leading-tight);
+  font-family: var(--font-pixel-circle);
+  font-weight: 700;
+  line-height: 1.2;
   color: var(--text-primary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
 }
 
 h1 {
@@ -144,6 +151,16 @@ h1 {
 h2 {
   font-size: var(--text-3xl);
   margin-bottom: var(--space-5);
+}
+
+h3, h4, h5, h6 {
+  margin: 0;
+  font-family: var(--font-geist-sans);
+  font-weight: 700;
+  line-height: var(--leading-tight);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  text-rendering: geometricPrecision;
 }
 
 h3 {
@@ -166,23 +183,48 @@ h6 {
   margin-bottom: var(--space-2);
 }
 
+/* Pixel Typography Variants */
+.pixel-grid {
+  font-family: var(--font-pixel-grid);
+}
+
+.pixel-circle {
+  font-family: var(--font-pixel-circle);
+}
+
+/* Body text uses Geist Sans */
 p {
   margin: 0 0 var(--space-4) 0;
+  font-family: var(--font-geist-sans);
   color: var(--text-secondary);
   line-height: var(--leading-relaxed);
 }
 
-/* Code and Monospace */
+/* Code and Monospace - Uses Geist Mono */
 code, pre, kbd, samp {
   font-family: var(--font-geist-mono);
 }
 
 code {
+  font-family: var(--font-geist-mono);
   font-size: 0.875em;
   background-color: var(--bg-tertiary);
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
+}
+
+pre {
+  font-family: var(--font-geist-mono);
+  padding: var(--space-4);
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
 }
 
 /* Links */
@@ -245,6 +287,73 @@ button:focus {
 
 .stack-large > * + * {
   margin-top: var(--space-8);
+}
+
+/* Badges - Geist-style pill badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-geist-sans);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: 0.125rem var(--space-2);
+  border-radius: 9999px;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+.badge-writing {
+  color: #a1a1a1;
+  background: rgba(161, 161, 161, 0.1);
+  border: 1px solid rgba(161, 161, 161, 0.2);
+}
+
+.badge-work {
+  color: #a1a1a1;
+  background: rgba(161, 161, 161, 0.1);
+  border: 1px solid rgba(161, 161, 161, 0.2);
+}
+
+.badge-completed {
+  color: #00d000;
+  background: rgba(0, 208, 0, 0.1);
+  border: 1px solid rgba(0, 208, 0, 0.2);
+}
+
+.badge-in-progress {
+  color: #f5a623;
+  background: rgba(245, 166, 35, 0.1);
+  border: 1px solid rgba(245, 166, 35, 0.2);
+}
+
+.badge-planned {
+  color: #a1a1a1;
+  background: rgba(161, 161, 161, 0.1);
+  border: 1px solid rgba(161, 161, 161, 0.2);
+}
+
+.badge-web-development {
+  color: #0070f3;
+  background: rgba(0, 112, 243, 0.1);
+  border: 1px solid rgba(0, 112, 243, 0.2);
+}
+
+.badge-data-analysis {
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.badge-automation {
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.badge-content {
+  color: #14b8a6;
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.2);
 }
 
 /* Responsive Design */

@@ -1,90 +1,125 @@
 ---
 // Theme Toggle Component
-// Implements dark/light mode switching following Geist design principles
+// Geist-style 3-option pill: system (monitor), light (sun), dark (moon)
 ---
 
-<button id="theme-toggle" type="button" aria-label="Toggle theme">
-  <span class="sun">☀️</span>
-  <span class="moon">🌙</span>
-</button>
+<div class="theme-switch" role="radiogroup" aria-label="Theme">
+  <button role="radio" data-theme-value="system" aria-checked="true" aria-label="System theme" class="switch-option active">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+  </button>
+  <button role="radio" data-theme-value="light" aria-checked="false" aria-label="Light theme" class="switch-option">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+  </button>
+  <button role="radio" data-theme-value="dark" aria-checked="false" aria-label="Dark theme" class="switch-option">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</div>
 
 <style>
-  #theme-toggle {
-    position: relative;
-    width: 2.5rem;
-    height: 2.5rem;
+  .theme-switch {
+    display: flex;
     border: 1px solid var(--border-primary);
-    border-radius: var(--radius);
-    background-color: var(--bg-secondary);
-    cursor: pointer;
-    transition: all var(--transition);
+    border-radius: 9999px;
+    background: var(--bg-secondary);
+    overflow: hidden;
+    gap: 0;
+  }
+
+  .switch-option {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    padding: 0;
+    line-height: 1;
   }
 
-  #theme-toggle:hover {
-    background-color: var(--bg-hover);
-    border-color: var(--border-hover);
+  .switch-option:hover {
+    color: var(--text-secondary);
+    background: transparent;
   }
 
-  #theme-toggle:focus {
+  .switch-option:focus {
     outline: 2px solid var(--accent-secondary);
-    outline-offset: 2px;
+    outline-offset: -2px;
   }
 
-  .sun {
-    display: block;
+  .switch-option.active {
+    background: var(--text-primary);
+    color: var(--bg-primary);
   }
 
-  .moon {
-    display: none;
-  }
-
-  [data-theme="light"] .sun {
-    display: none;
-  }
-
-  [data-theme="light"] .moon {
+  .switch-option svg {
     display: block;
   }
 </style>
 
-<script>
-  // Theme toggle functionality
-  function initTheme() {
-    // Get stored theme or default to dark
-    const storedTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+<script is:inline>
+  (function() {
+    var STORAGE_KEY = 'theme';
 
-    document.documentElement.setAttribute('data-theme', theme);
-  }
-
-  function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  }
-
-  // Initialize theme on page load
-  document.addEventListener('DOMContentLoaded', initTheme);
-
-  // Add click listener to theme toggle
-  document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-      themeToggle.addEventListener('click', toggleTheme);
+    function getSystemTheme() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
-  });
 
-  // Listen for system theme changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-      document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+    function getEffectiveTheme(preference) {
+      if (preference === 'system' || !preference) return getSystemTheme();
+      return preference;
     }
-  });
+
+    function updateToggleUI(preference) {
+      var buttons = document.querySelectorAll('.switch-option');
+      buttons.forEach(function(btn) {
+        var val = btn.getAttribute('data-theme-value');
+        var isActive = val === preference;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-checked', isActive.toString());
+      });
+    }
+
+    function applyTheme(preference) {
+      var effective = getEffectiveTheme(preference);
+      document.documentElement.setAttribute('data-theme', effective);
+      updateToggleUI(preference);
+    }
+
+    function init() {
+      var stored = localStorage.getItem(STORAGE_KEY);
+      var preference = stored || 'system';
+      applyTheme(preference);
+
+      document.querySelectorAll('.switch-option').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var value = btn.getAttribute('data-theme-value');
+          if (value === 'system') {
+            localStorage.removeItem(STORAGE_KEY);
+          } else {
+            localStorage.setItem(STORAGE_KEY, value);
+          }
+          applyTheme(value);
+        });
+      });
+    }
+
+    // Listen for system theme changes (only matters when preference is "system")
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if (!stored) {
+        applyTheme('system');
+      }
+    });
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
 </script>

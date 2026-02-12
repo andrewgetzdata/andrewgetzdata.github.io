@@ -1,247 +1,232 @@
 ---
 // Homepage - Andrew Getz Portfolio
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+
+// Aggregate all content
+const blogPosts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .map(p => ({
+    ...p,
+    contentType: 'writing' as const,
+    date: p.data.pubDate,
+    href: `/blog/${p.slug}/`,
+  }));
+
+const projects = (await getCollection('projects'))
+  .filter(p => p.data.status !== 'archived')
+  .map(p => ({
+    ...p,
+    contentType: 'work' as const,
+    date: p.data.startDate,
+    href: `/work/${p.slug}/`,
+  }));
+
+const featured = [...blogPosts, ...projects]
+  .filter(c => c.data.featured)
+  .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+}
 ---
 
 <BaseLayout
   title="Andrew Getz - Developer & Data Analyst"
   description="Personal portfolio of Andrew Getz - developer, data analyst, and storyteller from Columbus, Ohio."
 >
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1 class="hero-title">Andrew Getz</h1>
-        <p class="hero-subtitle">Developer, Data Analyst & Storyteller</p>
-        <p class="hero-description">
-          Building digital experiences and uncovering insights from data.
-          Based in Columbus, Ohio.
-        </p>
+  <div class="page-container">
+    <!-- Hero + About -->
+    <section class="section">
+      <h1>Andrew Getz</h1>
+      <p class="subtitle">Developer, Data Analyst & Storyteller</p>
+      <p>
+        Hi, I'm Andrew. I'm a developer and data analyst based in Columbus, Ohio.
+        I work at the intersection of technology and human experience -- building
+        digital experiences and uncovering insights from data that tell meaningful stories.
+      </p>
+    </section>
 
-        <!-- Quick Links -->
-        <div class="hero-actions">
-          <a href="/about" class="btn btn-primary">About Me</a>
-          <a href="/work" class="btn btn-secondary">View Work</a>
-        </div>
+    <hr />
+
+    <!-- Featured -->
+    <section class="section" id="featured">
+      <h2>Featured</h2>
+      <div class="items">
+        {featured.map(item => (
+          <a href={item.href} class="item">
+            <div class="item-top">
+              <h3 class="item-title">{item.data.title}</h3>
+              <div class="item-badges">
+                <span class={`badge badge-${item.contentType}`}>{item.contentType}</span>
+                {item.contentType === 'work' && 'status' in item.data && (
+                  <span class={`badge badge-${item.data.status}`}>{(item.data.status as string).replace('-', ' ')}</span>
+                )}
+                {item.contentType === 'work' && 'category' in item.data && (
+                  <span class={`badge badge-${item.data.category}`}>{(item.data.category as string).replace('-', ' ')}</span>
+                )}
+              </div>
+            </div>
+            <p class="item-desc">{item.data.description}</p>
+            <div class="item-bottom">
+              <span class="item-tags">
+                {item.data.tags.slice(0, 3).join(' \u00B7 ')}
+              </span>
+              <span class="item-date">{formatDate(item.date)} &rarr;</span>
+            </div>
+          </a>
+        ))}
       </div>
-    </div>
-  </section>
+      <a href="/work" class="view-all">View all work &rarr;</a>
+    </section>
 
-  <!-- Design System Demo Section -->
-  <section class="demo-section">
-    <div class="container">
-      <div class="stack-large">
-        <h2>Geist Design System Demo</h2>
+    <hr />
 
-        <div class="typography-demo">
-          <h3>Typography Scale</h3>
-          <div class="stack">
-            <h1>Heading 1 - Primary Title</h1>
-            <h2>Heading 2 - Section Title</h2>
-            <h3>Heading 3 - Subsection</h3>
-            <h4>Heading 4 - Component Title</h4>
-            <p>
-              This is body text using <strong>Geist Sans</strong> with proper line height
-              and spacing following Swiss design principles. The text maintains excellent
-              readability across different screen sizes.
-            </p>
-            <p>
-              Code elements use <code>Geist Mono</code> for optimal monospace rendering:
-              <code>npm run dev</code>
-            </p>
-          </div>
-        </div>
-
-        <div class="colors-demo">
-          <h3>Color System</h3>
-          <div class="color-grid">
-            <div class="color-swatch bg-primary">Primary Background</div>
-            <div class="color-swatch bg-secondary">Secondary Background</div>
-            <div class="color-swatch bg-tertiary">Tertiary Background</div>
-          </div>
-        </div>
-
-        <div class="spacing-demo">
-          <h3>Spacing System</h3>
-          <div class="spacing-examples">
-            <div class="space-example space-4">Space 4 (1rem)</div>
-            <div class="space-example space-8">Space 8 (2rem)</div>
-            <div class="space-example space-12">Space 12 (3rem)</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <h2>Get In Touch</h2>
+      <p>
+        Want to work together or just say hi?
+        The fastest way to reach me is a DM.
+      </p>
+      <SocialLinks layout="horizontal" showLabels={true} size="md" />
+    </section>
+  </div>
 </BaseLayout>
 
 <style>
-  /* Hero Section */
-  .hero {
-    padding: var(--space-20) 0 var(--space-16) 0;
-    border-bottom: 1px solid var(--border-primary);
+  .page-container {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: var(--space-16) var(--space-6);
   }
 
-  .hero-content {
-    max-width: 600px;
+  .section {
+    padding: var(--space-12) 0;
   }
 
-  .hero-title {
-    font-size: var(--text-5xl);
-    font-weight: 700;
-    margin-bottom: var(--space-4);
-    color: var(--text-primary);
-  }
-
-  .hero-subtitle {
+  .subtitle {
     font-size: var(--text-xl);
     color: var(--text-secondary);
+    font-weight: 500;
     margin-bottom: var(--space-6);
-    font-weight: 500;
   }
 
-  .hero-description {
-    font-size: var(--text-lg);
-    line-height: var(--leading-relaxed);
-    color: var(--text-secondary);
-    margin-bottom: var(--space-8);
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-primary);
+    margin: 0;
   }
 
-  .hero-actions {
+  /* Content items */
+  .items {
     display: flex;
-    gap: var(--space-4);
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
   }
 
-  /* Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    padding: var(--space-3) var(--space-6);
+  .item {
+    display: block;
+    padding: var(--space-6);
+    border: 1px solid var(--border-primary);
     border-radius: var(--radius);
-    font-size: var(--text-base);
-    font-weight: 500;
+    background: var(--bg-secondary);
     text-decoration: none;
-    transition: all var(--transition);
-    border: 1px solid;
+    transition: border-color var(--transition-fast);
   }
 
-  .btn-primary {
-    background-color: var(--text-primary);
-    color: var(--bg-primary);
-    border-color: var(--text-primary);
-  }
-
-  .btn-primary:hover {
-    background-color: var(--text-secondary);
-    border-color: var(--text-secondary);
-    text-decoration: none;
-  }
-
-  .btn-secondary {
-    background-color: transparent;
-    color: var(--text-primary);
-    border-color: var(--border-primary);
-  }
-
-  .btn-secondary:hover {
-    background-color: var(--bg-hover);
+  .item:hover {
     border-color: var(--border-hover);
     text-decoration: none;
   }
 
-  /* Demo Section */
-  .demo-section {
-    padding: var(--space-16) 0;
-  }
-
-  .typography-demo,
-  .colors-demo,
-  .spacing-demo {
-    padding: var(--space-6);
-    border: 1px solid var(--border-primary);
-    border-radius: var(--radius-lg);
-    background-color: var(--bg-secondary);
-  }
-
-  .color-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--space-4);
-    margin-top: var(--space-4);
-  }
-
-  .color-swatch {
-    padding: var(--space-4);
-    border-radius: var(--radius);
-    text-align: center;
-    font-weight: 500;
-    font-size: var(--text-sm);
-  }
-
-  .bg-primary {
-    background-color: var(--bg-primary);
-    border: 1px solid var(--border-primary);
-    color: var(--text-primary);
-  }
-
-  .bg-secondary {
-    background-color: var(--bg-secondary);
-    border: 1px solid var(--border-primary);
-    color: var(--text-primary);
-  }
-
-  .bg-tertiary {
-    background-color: var(--bg-tertiary);
-    border: 1px solid var(--border-primary);
-    color: var(--text-primary);
-  }
-
-  .spacing-examples {
-    margin-top: var(--space-4);
-  }
-
-  .space-example {
-    background-color: var(--bg-tertiary);
-    border: 1px solid var(--border-primary);
-    border-radius: var(--radius);
-    color: var(--text-secondary);
-    font-size: var(--text-sm);
-    font-weight: 500;
+  .item-top {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-4);
     margin-bottom: var(--space-2);
   }
 
-  .space-4 { padding: var(--space-4); }
-  .space-8 { padding: var(--space-8); }
-  .space-12 { padding: var(--space-12); }
+  .item-title {
+    margin: 0;
+    font-family: var(--font-pixel-circle);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: var(--leading-tight);
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+  }
 
-  /* Responsive Design */
+  .item-badges {
+    display: flex;
+    gap: var(--space-1);
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  .item-desc {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    margin-bottom: var(--space-3);
+  }
+
+  .item-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .item-tags {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+  }
+
+  .item-date {
+    font-size: var(--text-xs);
+    color: var(--text-tertiary);
+    white-space: nowrap;
+  }
+
+  .view-all {
+    display: inline-block;
+    margin-top: var(--space-6);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  .view-all:hover {
+    color: var(--text-primary);
+  }
+
   @media (max-width: 768px) {
-    .hero {
-      padding: var(--space-16) 0 var(--space-12) 0;
+    .page-container {
+      padding: var(--space-8) var(--space-4);
     }
 
-    .hero-title {
-      font-size: var(--text-4xl);
+    .section {
+      padding: var(--space-8) 0;
     }
 
-    .hero-subtitle {
-      font-size: var(--text-lg);
+    .item-top {
+      flex-direction: column;
+      gap: var(--space-2);
     }
 
-    .hero-description {
-      font-size: var(--text-base);
-    }
-
-    .btn {
-      padding: var(--space-2) var(--space-4);
-      font-size: var(--text-sm);
-    }
-
-    .color-grid {
-      grid-template-columns: 1fr;
+    .item-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-1);
     }
   }
 </style>
