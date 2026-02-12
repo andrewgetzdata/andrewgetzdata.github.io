@@ -130,11 +130,11 @@ body {
 }
 
 /* Typography Hierarchy */
-/* H1/H2 use pixel fonts by default, H3+ use Geist Sans */
+/* H1/H2 use pixel circle font by default, H3+ use Geist Sans */
 h1, h2 {
   margin: 0;
-  font-family: var(--font-pixel-square);
-  font-weight: 500;
+  font-family: var(--font-pixel-circle);
+  font-weight: 700;
   line-height: 1.2;
   color: var(--text-primary);
   letter-spacing: 0.05em;
@@ -144,12 +144,12 @@ h1, h2 {
 }
 
 h1 {
-  font-size: calc(var(--text-3xl) * 0.8);
+  font-size: var(--text-4xl);
   margin-bottom: var(--space-6);
 }
 
 h2 {
-  font-size: calc(var(--text-2xl) * 0.8);
+  font-size: var(--text-3xl);
   margin-bottom: var(--space-5);
 }
 
@@ -287,6 +287,73 @@ button:focus {
 
 .stack-large > * + * {
   margin-top: var(--space-8);
+}
+
+/* Badges - Geist-style pill badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-geist-sans);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: 0.125rem var(--space-2);
+  border-radius: 9999px;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+.badge-writing {
+  color: #a1a1a1;
+  background: rgba(161, 161, 161, 0.1);
+  border: 1px solid rgba(161, 161, 161, 0.2);
+}
+
+.badge-work {
+  color: #a1a1a1;
+  background: rgba(161, 161, 161, 0.1);
+  border: 1px solid rgba(161, 161, 161, 0.2);
+}
+
+.badge-completed {
+  color: #00d000;
+  background: rgba(0, 208, 0, 0.1);
+  border: 1px solid rgba(0, 208, 0, 0.2);
+}
+
+.badge-in-progress {
+  color: #f5a623;
+  background: rgba(245, 166, 35, 0.1);
+  border: 1px solid rgba(245, 166, 35, 0.2);
+}
+
+.badge-planned {
+  color: #a1a1a1;
+  background: rgba(161, 161, 161, 0.1);
+  border: 1px solid rgba(161, 161, 161, 0.2);
+}
+
+.badge-web-development {
+  color: #0070f3;
+  background: rgba(0, 112, 243, 0.1);
+  border: 1px solid rgba(0, 112, 243, 0.2);
+}
+
+.badge-data-analysis {
+  color: #a855f7;
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.badge-automation {
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+.badge-content {
+  color: #14b8a6;
+  background: rgba(20, 184, 166, 0.1);
+  border: 1px solid rgba(20, 184, 166, 0.2);
 }
 
 /* Responsive Design */

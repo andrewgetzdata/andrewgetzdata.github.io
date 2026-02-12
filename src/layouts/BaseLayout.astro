@@ -119,19 +119,17 @@ import Analytics from '../components/Analytics.astro';
 
   <!-- Header with Navigation and Theme Toggle -->
   <header class="site-header">
-    <div class="container">
-      <nav class="nav">
-        <div class="nav-brand">
-          <a href="/" class="brand-link">Andrew Getz</a>
-        </div>
+    <nav class="nav">
+      <div class="nav-brand">
+        <a href="/" class="brand-link">Andrew Getz</a>
+      </div>
 
-        <div class="nav-right">
-          <a href="/work" class="nav-link">Work</a>
-          <a href="/resume" class="nav-link">Resume</a>
-          <ThemeToggle />
-        </div>
-      </nav>
-    </div>
+      <div class="nav-right">
+        <a href="/work" class="nav-link">Work</a>
+        <a href="/resume" class="nav-link">Resume</a>
+        <ThemeToggle />
+      </div>
+    </nav>
   </header>
 
   <!-- Main Content Area -->
@@ -151,9 +149,9 @@ import Analytics from '../components/Analytics.astro';
   <!-- Theme initialization script - runs before page render -->
   <script is:inline>
     (function() {
-      const storedTheme = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+      var stored = localStorage.getItem('theme');
+      var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = stored || (systemDark ? 'dark' : 'light');
       document.documentElement.setAttribute('data-theme', theme);
     })();
   </script>
@@ -179,30 +177,30 @@ import Analytics from '../components/Analytics.astro';
     top: 6px;
   }
 
-  /* Header Styles */
+  /* Header Styles - Flat nav, flows with content */
   .site-header {
-    border-bottom: 1px solid var(--border-primary);
-    background-color: var(--bg-primary);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
   }
 
   .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-4) 0;
-    min-height: 4rem;
+    padding: var(--space-6) 0;
   }
 
   .brand-link {
-    font-size: var(--text-lg);
-    font-weight: 600;
+    font-family: var(--font-pixel-circle);
+    font-size: var(--text-2xl);
+    font-weight: 700;
     color: var(--text-primary);
     text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
     transition: color var(--transition-fast);
   }
 
@@ -218,7 +216,7 @@ import Analytics from '../components/Analytics.astro';
   }
 
   .nav-link {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     font-weight: 500;
     color: var(--text-secondary);
     text-decoration: none;
@@ -262,16 +260,24 @@ import Analytics from '../components/Analytics.astro';
 
   /* Responsive */
   @media (max-width: 768px) {
+    .site-header {
+      padding: 0 var(--space-4);
+    }
+
     .nav {
-      padding: var(--space-3) 0;
+      padding: var(--space-4) 0;
     }
 
     .brand-link {
-      font-size: var(--text-base);
+      font-size: var(--text-lg);
     }
 
     .nav-right {
       gap: var(--space-4);
+    }
+
+    .nav-link {
+      font-size: var(--text-sm);
     }
 
     .footer-text {

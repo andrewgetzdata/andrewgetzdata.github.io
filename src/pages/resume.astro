@@ -230,9 +230,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .resume-section h2 {
+    font-family: var(--font-geist-sans);
     font-size: var(--text-xl);
     font-weight: 600;
     color: var(--text-primary);
+    text-transform: none;
+    letter-spacing: -0.02em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     margin-bottom: var(--space-6);
     padding-bottom: var(--space-2);
     border-bottom: 1px solid var(--border-secondary);

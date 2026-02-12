@@ -58,7 +58,15 @@ function formatDate(date: Date): string {
           <a href={item.href} class="item">
             <div class="item-top">
               <h3 class="item-title">{item.data.title}</h3>
-              <span class="item-badge">{item.contentType}</span>
+              <div class="item-badges">
+                <span class={`badge badge-${item.contentType}`}>{item.contentType}</span>
+                {item.contentType === 'work' && 'status' in item.data && (
+                  <span class={`badge badge-${item.data.status}`}>{(item.data.status as string).replace('-', ' ')}</span>
+                )}
+                {item.contentType === 'work' && 'category' in item.data && (
+                  <span class={`badge badge-${item.data.category}`}>{(item.data.category as string).replace('-', ' ')}</span>
+                )}
+              </div>
             </div>
             <p class="item-desc">{item.data.description}</p>
             <div class="item-bottom">
@@ -144,24 +152,22 @@ function formatDate(date: Date): string {
 
   .item-title {
     margin: 0;
-    font-family: var(--font-geist-sans);
-    font-size: var(--text-lg);
-    font-weight: 600;
+    font-family: var(--font-pixel-circle);
+    font-size: var(--text-base);
+    font-weight: 700;
     color: var(--text-primary);
-    text-transform: none;
-    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     line-height: var(--leading-tight);
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
   }
 
-  .item-badge {
-    font-size: var(--text-xs);
-    font-weight: 500;
-    color: var(--text-tertiary);
-    background: var(--bg-tertiary);
-    padding: var(--space-1) var(--space-2);
-    border-radius: var(--radius-sm);
-    white-space: nowrap;
+  .item-badges {
+    display: flex;
+    gap: var(--space-1);
     flex-shrink: 0;
+    flex-wrap: wrap;
   }
 
   .item-desc {
