@@ -1,0 +1,12 @@
+{
+  "env": {
+    "PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(gh *)",
+      "Bash(npm *)"
+    ]
+  }
+}
