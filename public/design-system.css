@@ -133,14 +133,14 @@ body {
 /* H1/H2 use pixel circle font by default, H3+ use Geist Sans */
 h1, h2 {
   margin: 0;
-  font-family: var(--font-pixel-circle);
-  font-weight: 700;
+  font-family: var(--font-pixel-square);
+  font-weight: 500;
   line-height: 1.2;
   color: var(--text-primary);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: unset;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -314,23 +314,6 @@ button:focus {
   border: 1px solid rgba(161, 161, 161, 0.2);
 }
 
-.badge-completed {
-  color: #00d000;
-  background: rgba(0, 208, 0, 0.1);
-  border: 1px solid rgba(0, 208, 0, 0.2);
-}
-
-.badge-in-progress {
-  color: #f5a623;
-  background: rgba(245, 166, 35, 0.1);
-  border: 1px solid rgba(245, 166, 35, 0.2);
-}
-
-.badge-planned {
-  color: #a1a1a1;
-  background: rgba(161, 161, 161, 0.1);
-  border: 1px solid rgba(161, 161, 161, 0.2);
-}
 
 .badge-web-development {
   color: #0070f3;
@@ -354,6 +337,19 @@ button:focus {
   color: #14b8a6;
   background: rgba(20, 184, 166, 0.1);
   border: 1px solid rgba(20, 184, 166, 0.2);
+}
+
+/* Skill badge variants (reuse category colors) */
+.badge-development {
+  color: #0070f3;
+  background: rgba(0, 112, 243, 0.1);
+  border: 1px solid rgba(0, 112, 243, 0.2);
+}
+
+.badge-tools {
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.2);
 }
 
 /* Responsive Design */

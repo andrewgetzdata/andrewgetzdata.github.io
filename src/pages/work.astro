@@ -59,9 +59,6 @@ function formatDate(date: Date): string {
               <h3 class="item-title">{item.data.title}</h3>
               <div class="item-badges">
                 <span class={`badge badge-${item.contentType}`}>{item.contentType}</span>
-                {item.contentType === 'work' && 'status' in item.data && (
-                  <span class={`badge badge-${item.data.status}`}>{(item.data.status as string).replace('-', ' ')}</span>
-                )}
                 {item.contentType === 'work' && 'category' in item.data && (
                   <span class={`badge badge-${item.data.category}`}>{(item.data.category as string).replace('-', ' ')}</span>
                 )}
@@ -112,11 +109,11 @@ function formatDate(date: Date): string {
   .page-container {
     max-width: 48rem;
     margin: 0 auto;
-    padding: var(--space-16) var(--space-6);
+    padding: 0 var(--space-6) var(--space-8);
   }
 
   .section {
-    padding: var(--space-12) 0;
+    padding: var(--space-6) 0;
   }
 
   /* Filters */
@@ -184,15 +181,15 @@ function formatDate(date: Date): string {
 
   .item-title {
     margin: 0;
-    font-family: var(--font-pixel-circle);
+    font-family: var(--font-pixel-square);
     font-size: var(--text-base);
-    font-weight: 700;
+    font-weight: 500;
     color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
     line-height: var(--leading-tight);
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: unset;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .item-badges {

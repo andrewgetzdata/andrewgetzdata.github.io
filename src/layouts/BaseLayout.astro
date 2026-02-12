@@ -43,8 +43,8 @@ const structuredData = {
       "jobTitle": "Developer & Data Analyst",
       "knowsAbout": ["Web Development", "Data Analysis", "JavaScript", "Python", "Astro"],
       "sameAs": [
-        "https://github.com/andrewgetz",
-        "https://linkedin.com/in/andrewgetz"
+        "https://github.com/andrewgetzdata",
+        "https://www.linkedin.com/in/andrew-getz-22880943/"
       ]
     }
   } : {}),
@@ -56,6 +56,9 @@ const structuredData = {
 // Import components
 import ThemeToggle from '../components/ThemeToggle.astro';
 import Analytics from '../components/Analytics.astro';
+
+// Determine active page for nav highlighting
+const currentPath = Astro.url.pathname;
 ---
 
 <!DOCTYPE html>
@@ -125,8 +128,9 @@ import Analytics from '../components/Analytics.astro';
       </div>
 
       <div class="nav-right">
-        <a href="/work" class="nav-link">Work</a>
-        <a href="/resume" class="nav-link">Resume</a>
+        <a href="/" class={`nav-link ${currentPath === '/' ? 'active' : ''}`}>about</a>
+        <a href="/work" class={`nav-link ${currentPath.startsWith('/work') ? 'active' : ''}`}>work</a>
+        <a href="/resume" class={`nav-link ${currentPath.startsWith('/resume') ? 'active' : ''}`}>resume</a>
         <ThemeToggle />
       </div>
     </nav>
@@ -193,14 +197,15 @@ import Analytics from '../components/Analytics.astro';
 
   .brand-link {
     font-family: var(--font-pixel-circle);
-    font-size: var(--text-2xl);
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 500;
     color: var(--text-primary);
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    -webkit-font-smoothing: none;
-    -moz-osx-font-smoothing: unset;
+    text-transform: lowercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     transition: color var(--transition-fast);
   }
 
@@ -227,6 +232,10 @@ import Analytics from '../components/Analytics.astro';
   .nav-link:hover {
     color: var(--text-primary);
     text-decoration: none;
+  }
+
+  .nav-link.active {
+    color: var(--text-primary);
   }
 
   /* Main Content */
@@ -269,7 +278,7 @@ import Analytics from '../components/Analytics.astro';
     }
 
     .brand-link {
-      font-size: var(--text-lg);
+      font-size: 2.5rem;
     }
 
     .nav-right {
