@@ -75,16 +75,12 @@ function formatDate(date: Date): string {
                             <div class="item-top">
                                 <h3 class="item-title">{item.data.title}</h3>
                                 <div class="item-badges">
-                                    <span
-                                        class={`badge badge-${item.contentType}`}
-                                    >
+                                    <span class="badge badge-gray-subtle">
                                         {item.contentType}
                                     </span>
                                     {item.contentType === "work" &&
                                         "category" in item.data && (
-                                            <span
-                                                class={`badge badge-${item.data.category}`}
-                                            >
+                                            <span class="badge badge-teal-subtle">
                                                 {(
                                                     item.data.category as string
                                                 ).replace("-", " ")}
@@ -94,11 +90,11 @@ function formatDate(date: Date): string {
                             </div>
                             <p class="item-desc">{item.data.description}</p>
                             <div class="item-bottom">
-                                <span class="item-tags">
-                                    {item.data.tags
-                                        .slice(0, 3)
-                                        .join(" \u00B7 ")}
-                                </span>
+                                <div class="item-tags">
+                                    {item.data.tags.slice(0, 3).map((tag: string) => (
+                                        <span class="badge badge-amber-subtle">{tag}</span>
+                                    ))}
+                                </div>
                                 <span class="item-date">
                                     {formatDate(item.date)} &rarr;
                                 </span>
@@ -190,7 +186,7 @@ function formatDate(date: Date): string {
 
     .item-title {
         margin: 0;
-        font-family: var(--font-pixel-circle);
+        font-family: var(--font-pixel-square);
         font-size: var(--text-base);
         font-weight: 500;
         color: var(--text-primary);
@@ -223,8 +219,9 @@ function formatDate(date: Date): string {
     }
 
     .item-tags {
-        font-size: var(--text-xs);
-        color: var(--text-tertiary);
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-1);
     }
 
     .item-date {

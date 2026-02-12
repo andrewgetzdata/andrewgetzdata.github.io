@@ -25,8 +25,11 @@ const projects = (await getCollection('projects'))
 const allContent = [...blogPosts, ...projects]
   .sort((a, b) => b.date.getTime() - a.date.getTime());
 
-// Collect unique content types for filter buttons
-const types = ['all', ...new Set(allContent.map(c => c.contentType))];
+// Collect unique types from frontmatter
+const types = ['all', ...new Set(allContent.map(c => c.data.type || c.contentType))];
+
+// Collect unique tags from all content
+const allTags = [...new Set(allContent.flatMap(c => c.data.tags))].sort();
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
@@ -39,36 +42,43 @@ function formatDate(date: Date): string {
 >
   <div class="page-container">
     <section class="section">
-      <h1>Work & Writing</h1>
-
       <div class="filters" role="group" aria-label="Filter content">
         {types.map(type => (
           <button
             class={`filter-btn ${type === 'all' ? 'active' : ''}`}
             data-filter={type}
           >
-            {type}
+            {type === 'all' ? 'all types' : type}
           </button>
+        ))}
+      </div>
+
+      <div class="filters" role="group" aria-label="Filter by tag">
+        <button class="filter-btn tag-btn active" data-tag="all">all tags</button>
+        {allTags.map(tag => (
+          <button class="filter-btn tag-btn" data-tag={tag}>{tag}</button>
         ))}
       </div>
 
       <div class="items">
         {allContent.map(item => (
-          <a href={item.href} class="item" data-type={item.contentType}>
+          <a href={item.href} class="item" data-type={item.data.type || item.contentType} data-tags={item.data.tags.join(',')}>
             <div class="item-top">
               <h3 class="item-title">{item.data.title}</h3>
               <div class="item-badges">
-                <span class={`badge badge-${item.contentType}`}>{item.contentType}</span>
+                <span class="badge badge-gray-subtle">{item.data.type || item.contentType}</span>
                 {item.contentType === 'work' && 'category' in item.data && (
-                  <span class={`badge badge-${item.data.category}`}>{(item.data.category as string).replace('-', ' ')}</span>
+                  <span class="badge badge-teal-subtle">{(item.data.category as string).replace('-', ' ')}</span>
                 )}
               </div>
             </div>
             <p class="item-desc">{item.data.description}</p>
             <div class="item-bottom">
-              <span class="item-tags">
-                {item.data.tags.slice(0, 3).join(' \u00B7 ')}
-              </span>
+              <div class="item-tags">
+                {item.data.tags.slice(0, 3).map((tag: string) => (
+                  <span class="badge badge-amber-subtle">{tag}</span>
+                ))}
+              </div>
               <span class="item-date">{formatDate(item.date)} &rarr;</span>
             </div>
           </a>
@@ -80,26 +90,38 @@ function formatDate(date: Date): string {
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.filter-btn');
+    const typeButtons = document.querySelectorAll('.filter-btn:not(.tag-btn)');
+    const tagButtons = document.querySelectorAll('.tag-btn');
     const items = document.querySelectorAll('.item[data-type]');
 
-    buttons.forEach(btn => {
+    let activeType = 'all';
+    let activeTag = 'all';
+
+    function filterItems() {
+      items.forEach(item => {
+        const type = item.getAttribute('data-type');
+        const tags = item.getAttribute('data-tags') || '';
+        const typeMatch = activeType === 'all' || type === activeType;
+        const tagMatch = activeTag === 'all' || tags.split(',').includes(activeTag);
+        (item as HTMLElement).style.display = (typeMatch && tagMatch) ? '' : 'none';
+      });
+    }
+
+    typeButtons.forEach(btn => {
       btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-filter');
-
-        // Update active button
-        buttons.forEach(b => b.classList.remove('active'));
+        activeType = btn.getAttribute('data-filter') || 'all';
+        typeButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        filterItems();
+      });
+    });
 
-        // Filter items
-        items.forEach(item => {
-          const type = item.getAttribute('data-type');
-          if (filter === 'all' || type === filter) {
-            (item as HTMLElement).style.display = '';
-          } else {
-            (item as HTMLElement).style.display = 'none';
-          }
-        });
+    tagButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeTag = btn.getAttribute('data-tag') || 'all';
+        tagButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterItems();
       });
     });
   });
@@ -211,11 +233,13 @@ function formatDate(date: Date): string {
     justify-content: space-between;
     align-items: center;
     gap: var(--space-4);
+    flex-wrap: wrap;
   }
 
   .item-tags {
-    font-size: var(--text-xs);
-    color: var(--text-tertiary);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
   }
 
   .item-date {
@@ -241,7 +265,7 @@ function formatDate(date: Date): string {
     .item-bottom {
       flex-direction: column;
       align-items: flex-start;
-      gap: var(--space-1);
+      gap: var(--space-2);
     }
   }
 </style>

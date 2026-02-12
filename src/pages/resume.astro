@@ -1,304 +1,755 @@
 ---
 // Resume Page - Andrew Getz Portfolio
-import BaseLayout from '../layouts/BaseLayout.astro';
-import SocialLinks from '../components/SocialLinks.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SocialLinks from "../components/SocialLinks.astro";
 ---
 
 <BaseLayout
-  title="Resume - Andrew Getz"
-  description="Professional resume of Andrew Getz - AI & data engineer with expertise in analytics and machine learning."
+    title="Resume - Andrew Getz"
+    description="Professional resume of Andrew Getz - Analytics Engineer with expertise in data engineering, visualization, and machine learning."
 >
-  <div class="page-container">
-    <!-- Header -->
-    <section class="section resume-header">
-      <h1>AI & Data Engineer</h1>
-      <p class="resume-credentials">MS Data Science · Analytics · Machine Learning</p>
-    </section>
+    <div class="page-container">
+        <!-- Header -->
+        <section class="section resume-header">
+            <h1>Builder</h1>
+            <p class="resume-credentials">
+                Analytics · Data · Artificial Intelligence
+            </p>
+        </section>
 
-    <hr />
+        <!-- Experience -->
+        <section class="section resume-section">
+            <div class="section-box">
+                <h2>Experience</h2>
+            </div>
+            <div class="collapse-group">
+                <details class="collapse-item">
+                    <summary class="collapse-summary">
+                        <div class="collapse-title-row">
+                            <h3>
+                                Lead Analytics Engineer <span class="title-sep"
+                                    >|</span
+                                > Fountain
+                            </h3>
+                            <span class="experience-period"
+                                >Dec 2024 - Present</span
+                            >
+                        </div>
+                        <svg
+                            class="collapse-chevron"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            ><path
+                                d="M4 6L8 10L12 6"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path></svg
+                        >
+                    </summary>
+                    <div class="collapse-content">
+                        <ul class="experience-details">
+                            <li>
+                                Developed an embedded network of AI agents that
+                                delivered real-time insights and hiring
+                                optimization recommendations, enabling users to
+                                enhance their product implementation through
+                                conversational AI interactions
+                            </li>
+                            <li>
+                                Led a complete warehouse and data transformation
+                                migration project for internal stakeholders and
+                                embedded customers from BigQuery to ClickHouse
+                                using a data lake architecture in S3, saving
+                                $400,000 in renewal contract costs
+                            </li>
+                            <li>
+                                Developed new product capabilities in the
+                                migration to address customer needs including
+                                NRT data availability, 75% faster refreshes, 50%
+                                faster embedded queries, and laid the foundation
+                                for the next stage of Fountain’s product growth
+                            </li>
+                            <li>
+                                Internal self-serve data models have experienced
+                                67% increase in adoption rate; moving from
+                                reporting tools to strategic decision support to
+                                inform the product roadmap, develop new GTM
+                                strategies, and enable revenue growth
+                            </li>
+                        </ul>
+                    </div>
+                </details>
 
-    <!-- Professional Summary -->
-    <section class="section resume-section">
-      <h2>Professional Summary</h2>
-      <p>
-        Developer and data analyst with a passion for creating meaningful digital experiences
-        and extracting actionable insights from complex datasets. Combines technical expertise
-        with strong communication skills to bridge the gap between data and decision-making.
-        Committed to clean code, thoughtful design, and solving real-world problems.
-      </p>
-    </section>
+                <details class="collapse-item">
+                    <summary class="collapse-summary">
+                        <div class="collapse-title-row">
+                            <h3>
+                                Senior Analytics Engineer <span
+                                    class="title-sep">|</span
+                                > Fountain
+                            </h3>
+                            <span class="experience-period"
+                                >Mar 2024 - Dec 2024</span
+                            >
+                        </div>
+                        <svg
+                            class="collapse-chevron"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            ><path
+                                d="M4 6L8 10L12 6"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path></svg
+                        >
+                    </summary>
+                    <div class="collapse-content">
+                        <ul class="experience-details">
+                            <li>
+                                Led the constant growth and iteration of a
+                                large, complex, multi-project data model built
+                                in dbt core with ~50K daily materializations
+                                that supports all Fountain customers across 8
+                                products, custom reporting, and internal data
+                                stakeholder resources including enterprise
+                                reporting, revenue operations, marketing,
+                                finance, and customer support
+                            </li>
+                            <li>
+                                Implemented query and model efficiency
+                                enhancements to decrease annual BigQuery compute
+                                cost by ~$250,000
+                            </li>
+                            <li>
+                                Serve as a technical lead and thought leader,
+                                providing technical guidance, reinforcing best
+                                practices, reviewing work, and raising the bar
+                                of quality engineering and analysis across the
+                                data team and guiding cross-functional
+                                stakeholders
+                            </li>
+                        </ul>
+                    </div>
+                </details>
 
-    <hr />
+                <details class="collapse-item">
+                    <summary class="collapse-summary">
+                        <div class="collapse-title-row">
+                            <h3>
+                                Founding Analytics Engineer <span
+                                    class="title-sep">|</span
+                                > Fountain
+                            </h3>
+                            <span class="experience-period"
+                                >Jul 2023 - Mar 2024</span
+                            >
+                        </div>
+                        <svg
+                            class="collapse-chevron"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            ><path
+                                d="M4 6L8 10L12 6"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path></svg
+                        >
+                    </summary>
+                    <div class="collapse-content">
+                        <ul class="experience-details">
+                            <li>
+                                Founding member of the Analytics Engineering
+                                function and owner of the Analytics Engineering
+                                roadmap and results
+                            </li>
+                            <li>
+                                Implemented dbt in one quarter from end-to-end,
+                                including orchestration, transformation, and
+                                end-user-facing semantic layer of our data
+                                pipelines in LookML, visualized in Looker and
+                                embedded in the Fountain Hire product
+                            </li>
+                            <li>
+                                Led the strategic initiative to redesign our
+                                data model and Looker semantic layer using data
+                                and engineering best practices, leading to an
+                                86% decrease in Looker load times and 99%
+                                decrease in compute time for the same reports
+                            </li>
+                            <li>
+                                Successfully advocated for and owned the
+                                implementation of a modern data stack (dbt /
+                                Dagster), significantly enhancing the
+                                competitive advantage of our analytics product
+                                (~ 14K users) and our capacity for data-driven
+                                decisions
+                            </li>
+                            <li>
+                                Responsible for approving PRs for changes to the
+                                transformation layer in dbt and our semantic
+                                layers built in LookML
+                            </li>
+                        </ul>
+                    </div>
+                </details>
 
-    <!-- Experience -->
-    <section class="section resume-section">
-      <h2>Experience</h2>
-      <div class="experience-list">
-        <div class="experience-item">
-          <div class="experience-header">
-            <h3>Data Analyst & Developer</h3>
-            <span class="experience-period">2020 - Present</span>
-          </div>
-          <p class="experience-company">Freelance & Contract Work</p>
-          <ul class="experience-details">
-            <li>Develop web applications and data analysis solutions for diverse clients</li>
-            <li>Create interactive dashboards and reporting tools using modern web technologies</li>
-            <li>Design and implement data processing pipelines and analytical workflows</li>
-            <li>Collaborate with stakeholders to translate business requirements into technical solutions</li>
-          </ul>
-        </div>
+                <details class="collapse-item">
+                    <summary class="collapse-summary">
+                        <div class="collapse-title-row">
+                            <h3>
+                                Data Analyst <span class="title-sep">|</span> Fountain
+                            </h3>
+                            <span class="experience-period"
+                                >May 2022 - Jul 2023</span
+                            >
+                        </div>
+                        <svg
+                            class="collapse-chevron"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            ><path
+                                d="M4 6L8 10L12 6"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path></svg
+                        >
+                    </summary>
+                    <div class="collapse-content">
+                        <ul class="experience-details">
+                            <li>
+                                Own standard and custom reporting and analytics
+                                requests for Fountain’s portfolio of strategic
+                                enterprise customers
+                            </li>
+                            <li>
+                                Deployment manager and owner of the internal and
+                                customer-facing transformation layers of our
+                                data in Looker
+                            </li>
+                            <li>
+                                Built custom reports and analysis to support
+                                sales and increase revenue, including a $50,000
+                                reporting package
+                            </li>
+                            <li>
+                                Developed an ‘Anatomy Detection’ bot that sends
+                                alerts for large KPI changes, attributed with
+                                $100,000 in savings
+                            </li>
+                            <li>
+                                Partnered across teams to build and implement an
+                                automated, secure, customer facing, custom
+                                report-sharing
+                            </li>
+                        </ul>
+                    </div>
+                </details>
 
-        <div class="experience-item">
-          <div class="experience-header">
-            <h3>Previous Professional Experience</h3>
-            <span class="experience-period">2015 - 2020</span>
-          </div>
-          <p class="experience-company">Various Organizations</p>
-          <ul class="experience-details">
-            <li>Developed analytical frameworks and reporting systems</li>
-            <li>Improved data quality and process efficiency through automation</li>
-            <li>Presented findings and recommendations to leadership teams</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+                <details class="collapse-item">
+                    <summary class="collapse-summary">
+                        <div class="collapse-title-row">
+                            <h3>
+                                Customer Experience Data Analyst <span
+                                    class="title-sep">|</span
+                                > Root Inc.
+                            </h3>
+                            <span class="experience-period"
+                                >Nov 2021 - May 2022</span
+                            >
+                        </div>
+                        <svg
+                            class="collapse-chevron"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            ><path
+                                d="M4 6L8 10L12 6"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path></svg
+                        >
+                    </summary>
+                    <div class="collapse-content">
+                        <ul class="experience-details">
+                            <li>
+                                Analytics and reporting owner for the Customer
+                                Service, Internal Sales Agency, Claims Support &
+                                Carvana Ops Teams
+                            </li>
+                            <li>
+                                Built robust and stable data and reporting
+                                infrastructure from the ground up using SQL
+                                pipelines, visualized in Tableau
+                            </li>
+                            <li>
+                                Designed and developed an internal QA system to
+                                replace a software vendor, eliminating a $60,000
+                                annual expense
+                            </li>
+                            <li>
+                                Provided recommendations to leadership regarding
+                                team operations, resulting in a 25% increase in
+                                service level
+                            </li>
+                            <li>
+                                Onboarded, coached, and managed the daily work
+                                of the Operations Data Analyst to become an
+                                effective contributor
+                            </li>
+                        </ul>
+                    </div>
+                </details>
 
-    <hr />
+                <details class="collapse-item">
+                    <summary class="collapse-summary">
+                        <div class="collapse-title-row">
+                            <h3>
+                                Customer Service Operations Data Analyst <span
+                                    class="title-sep">|</span
+                                > Root Inc.
+                            </h3>
+                            <span class="experience-period"
+                                >Feb 2021 - Nov 2021</span
+                            >
+                        </div>
+                        <svg
+                            class="collapse-chevron"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            ><path
+                                d="M4 6L8 10L12 6"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"></path></svg
+                        >
+                    </summary>
+                    <div class="collapse-content">
+                        <ul class="experience-details">
+                            <li>
+                                Analytics and reporting owner for a rapidly
+                                scaling Internal Sales Agency, accounting for
+                                >20% of Root’s 2021 policies
+                            </li>
+                            <li>
+                                Built automated analytic tools to empower
+                                stakeholders that save 20+ hours a week in
+                                repetitive analysis tasks
+                            </li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
+        </section>
 
-    <!-- Education & Learning -->
-    <section class="section resume-section">
-      <h2>Education & Learning</h2>
-      <div class="education-item">
-        <h3>Continuous Learning</h3>
-        <p>
-          Self-directed study in modern web development, data science, and statistical analysis.
-          Active participant in developer communities and ongoing professional development.
-        </p>
-      </div>
-    </section>
+        <!-- Education -->
+        <section class="section resume-section">
+            <div class="section-box">
+                <h2>Education</h2>
+            </div>
+            <div class="education-grid">
+                <div class="education-col">
+                    <h3 class="education-school">Georgia Institute of Technology</h3>
+                    <p class="education-degree">Masters of Science in Analytics</p>
+                </div>
+                <div class="education-col">
+                    <h3 class="education-school">The Ohio State University, Fisher College of Business</h3>
+                    <p class="education-degree">Bachelor of Science in Business Administration</p>
+                </div>
+            </div>
+        </section>
 
-    <hr />
+        <!-- Technical Skills -->
+        <section class="section resume-section">
+            <div class="section-box">
+                <h2>Technical Skills</h2>
+            </div>
 
-    <!-- Technical Skills -->
-    <section class="section resume-section">
-      <h2>Technical Skills</h2>
+            <div class="skill-group">
+                <h3>Data Visualization</h3>
+                <div class="skill-badges">
+                    <span class="badge badge-blue-subtle">Looker</span>
+                    <span class="badge badge-blue-subtle">Omni</span>
+                    <span class="badge badge-blue-subtle">Mode</span>
+                    <span class="badge badge-blue-subtle">Tableau</span>
+                </div>
+            </div>
 
-      <div class="skill-group">
-        <h3>Development</h3>
-        <div class="skill-badges">
-          <span class="badge badge-development">JavaScript/TypeScript</span>
-          <span class="badge badge-development">Python</span>
-          <span class="badge badge-development">HTML/CSS</span>
-          <span class="badge badge-development">React/Astro</span>
-          <span class="badge badge-development">Node.js</span>
-        </div>
-      </div>
+            <div class="skill-group">
+                <h3>Analytics Engineering</h3>
+                <div class="skill-badges">
+                    <span class="badge badge-purple-subtle">Data Modeling</span>
+                    <span class="badge badge-purple-subtle">Transformation</span
+                    >
+                    <span class="badge badge-purple-subtle"
+                        >Self-Serve Analytics</span
+                    >
+                    <span class="badge badge-purple-subtle">Metric Trees</span>
+                </div>
+            </div>
 
-      <div class="skill-group">
-        <h3>Data Analysis</h3>
-        <div class="skill-badges">
-          <span class="badge badge-data-analysis">Statistical Analysis</span>
-          <span class="badge badge-data-analysis">Data Visualization</span>
-          <span class="badge badge-data-analysis">SQL</span>
-          <span class="badge badge-data-analysis">Pandas/NumPy</span>
-          <span class="badge badge-data-analysis">Streamlit</span>
-        </div>
-      </div>
+            <div class="skill-group">
+                <h3>Data Engineering</h3>
+                <div class="skill-badges">
+                    <span class="badge badge-teal-subtle"
+                        >ETL Pipeline Development</span
+                    >
+                    <span class="badge badge-teal-subtle"
+                        >Query Optimization</span
+                    >
+                    <span class="badge badge-teal-subtle">Orchestration</span>
+                    <span class="badge badge-teal-subtle">CI/CD</span>
+                </div>
+            </div>
 
-      <div class="skill-group">
-        <h3>Tools</h3>
-        <div class="skill-badges">
-          <span class="badge badge-tools">Git/GitHub</span>
-          <span class="badge badge-tools">VS Code</span>
-          <span class="badge badge-tools">Docker</span>
-          <span class="badge badge-tools">Linux/MacOS</span>
-          <span class="badge badge-tools">Jupyter</span>
-        </div>
-      </div>
-    </section>
+            <div class="skill-group">
+                <h3>Analysis Techniques</h3>
+                <div class="skill-badges">
+                    <span class="badge badge-amber-subtle"
+                        >Hypothesis Testing</span
+                    >
+                    <span class="badge badge-amber-subtle">A/B Testing</span>
+                    <span class="badge badge-amber-subtle"
+                        >Regression Analysis</span
+                    >
+                    <span class="badge badge-amber-subtle">SVMs</span>
+                    <span class="badge badge-amber-subtle">Decision Trees</span>
+                    <span class="badge badge-amber-subtle"
+                        >Time Series Analysis</span
+                    >
+                    <span class="badge badge-amber-subtle"
+                        >k-means Clustering</span
+                    >
+                    <span class="badge badge-amber-subtle"
+                        >Anomaly Detection</span
+                    >
+                    <span class="badge badge-amber-subtle">Random Forests</span>
+                    <span class="badge badge-amber-subtle">NLP</span>
+                </div>
+            </div>
 
-    <hr />
+            <div class="skill-group">
+                <h3>Tools & Frameworks</h3>
+                <div class="skill-badges">
+                    <span class="badge badge-green-subtle">Advanced SQL</span>
+                    <span class="badge badge-green-subtle">ClickHouse</span>
+                    <span class="badge badge-green-subtle">BigQuery</span>
+                    <span class="badge badge-green-subtle">Redshift</span>
+                    <span class="badge badge-green-subtle">Snowflake</span>
+                    <span class="badge badge-green-subtle">dbt</span>
+                    <span class="badge badge-green-subtle">Dagster</span>
+                    <span class="badge badge-green-subtle">Python</span>
+                    <span class="badge badge-green-subtle">R</span>
+                    <span class="badge badge-green-subtle">Jupyter</span>
+                    <span class="badge badge-green-subtle">Hex</span>
+                    <span class="badge badge-green-subtle">Google Colab</span>
+                    <span class="badge badge-green-subtle">Fivetran</span>
+                    <span class="badge badge-green-subtle">Git & GitHub</span>
+                </div>
+            </div>
+        </section>
 
-    <!-- Get In Touch -->
-    <section class="section" id="contact">
-      <h2>Get In Touch</h2>
-      <p>
-        Want to work together or just say hi?
-        The fastest way to reach me is a DM.
-      </p>
-      <SocialLinks layout="horizontal" showLabels={true} size="md" />
-    </section>
-  </div>
+        <div class="divider" aria-hidden="true"></div>
+
+        <!-- Get In Touch -->
+        <section class="section" id="contact">
+            <h2>Get In Touch</h2>
+            <p>
+                Want to work together or just say hi? The fastest way to reach
+                me is a DM.
+            </p>
+            <SocialLinks layout="horizontal" showLabels={true} size="md" />
+        </section>
+    </div>
 </BaseLayout>
 
 <style>
-  .page-container {
-    max-width: 48rem;
-    margin: 0 auto;
-    padding: 0 var(--space-6) var(--space-8);
-  }
-
-  .section {
-    padding: var(--space-6) 0;
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid var(--border-primary);
-    margin: 0;
-  }
-
-  .resume-header h1 {
-    margin-bottom: var(--space-2);
-  }
-
-  .resume-credentials {
-    font-size: var(--text-lg);
-    color: var(--text-secondary);
-    font-weight: 500;
-    margin: 0;
-  }
-
-  .resume-section h2 {
-    font-family: var(--font-geist-sans);
-    font-size: var(--text-xl);
-    font-weight: 600;
-    color: var(--text-primary);
-    text-transform: none;
-    letter-spacing: -0.02em;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    margin-bottom: var(--space-6);
-    padding-bottom: var(--space-2);
-    border-bottom: 1px solid var(--border-secondary);
-  }
-
-  .resume-section p {
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-    margin-bottom: var(--space-4);
-  }
-
-  .experience-item {
-    margin-bottom: var(--space-8);
-  }
-
-  .experience-item:last-child {
-    margin-bottom: 0;
-  }
-
-  .experience-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: var(--space-2);
-  }
-
-  .experience-header h3 {
-    font-size: var(--text-lg);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0;
-  }
-
-  .experience-period {
-    font-size: var(--text-sm);
-    color: var(--text-tertiary);
-    font-weight: 500;
-  }
-
-  .experience-company {
-    font-size: var(--text-base);
-    color: var(--text-secondary);
-    font-weight: 500;
-    margin-bottom: var(--space-3);
-  }
-
-  .experience-details {
-    margin: 0;
-    padding-left: var(--space-5);
-  }
-
-  .experience-details li {
-    color: var(--text-secondary);
-    margin-bottom: var(--space-2);
-    font-size: var(--text-sm);
-    line-height: var(--leading-normal);
-  }
-
-  .education-item h3 {
-    font-size: var(--text-lg);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--space-3);
-  }
-
-  .education-item p {
-    color: var(--text-secondary);
-    line-height: var(--leading-relaxed);
-    margin: 0;
-  }
-
-  .skill-group {
-    margin-bottom: var(--space-6);
-  }
-
-  .skill-group:last-child {
-    margin-bottom: 0;
-  }
-
-  .skill-group h3 {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--space-3);
-  }
-
-  .skill-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-  }
-
-  /* Print Styles */
-  @media print {
     .page-container {
-      padding: 0;
-      max-width: none;
+        max-width: 48rem;
+        margin: 0 auto;
+        padding: 0 var(--space-6) var(--space-8);
     }
 
     .section {
-      page-break-inside: avoid;
+        padding: var(--space-6) 0;
     }
 
-    .experience-item {
-      page-break-inside: avoid;
+    .divider {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        user-select: none;
+        line-height: 1;
     }
 
-    body {
-      font-size: 12px;
-      line-height: 1.4;
-      color: #000;
-      background: white;
-    }
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .page-container {
-      padding: var(--space-8) var(--space-4);
+    .divider::after {
+        content: "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------";
+        font-family: var(--font-geist-mono);
+        font-size: var(--text-xs);
+        color: var(--text-tertiary);
     }
 
-    .section {
-      padding: var(--space-8) 0;
+    .resume-header.section {
+        padding-top: 0;
     }
 
-    .experience-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-1);
+    .resume-header h1 {
+        margin-bottom: var(--space-2);
     }
-  }
+
+    .resume-credentials {
+        font-size: var(--text-lg);
+        color: var(--text-secondary);
+        font-weight: 500;
+        margin: 0;
+    }
+
+    .resume-section.section {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .resume-section h2 {
+        font-family: var(--font-geist-sans);
+        font-size: var(--text-xl);
+        font-weight: 600;
+        color: var(--text-primary);
+        text-transform: none;
+        letter-spacing: -0.02em;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        margin-bottom: var(--space-6);
+    }
+
+    .resume-section p {
+        color: var(--text-secondary);
+        line-height: var(--leading-relaxed);
+        margin-bottom: var(--space-4);
+    }
+
+    /* Collapse Group */
+    .collapse-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .collapse-item {
+        border-bottom: 1px solid var(--border-primary);
+    }
+
+    .collapse-item:first-child {
+        border-top: 1px solid var(--border-primary);
+    }
+
+    .collapse-summary {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-4) 0;
+        cursor: pointer;
+        list-style: none;
+        gap: var(--space-3);
+    }
+
+    .collapse-summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .collapse-summary::marker {
+        display: none;
+        content: "";
+    }
+
+    .collapse-title-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .collapse-title-row h3 {
+        font-size: var(--text-base);
+        font-weight: 500;
+        color: var(--text-primary);
+        margin: 0;
+    }
+
+    .title-sep {
+        color: var(--text-tertiary);
+        margin: 0 var(--space-1);
+        font-weight: 400;
+    }
+
+    .experience-period {
+        font-family: var(--font-geist-mono);
+        font-size: var(--text-xs);
+        color: var(--text-tertiary);
+        font-weight: 400;
+        white-space: nowrap;
+        margin-left: var(--space-3);
+    }
+
+    .collapse-chevron {
+        color: var(--text-tertiary);
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    .collapse-item[open] .collapse-chevron {
+        transform: rotate(180deg);
+    }
+
+    .collapse-content {
+        padding: 0 0 var(--space-4) 0;
+    }
+
+    .experience-details {
+        margin: 0;
+        padding-left: var(--space-5);
+    }
+
+    .experience-details li {
+        color: var(--text-secondary);
+        margin-bottom: var(--space-2);
+        font-size: var(--text-sm);
+        line-height: var(--leading-normal);
+    }
+
+    .experience-details li:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Education Grid */
+    .education-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-6);
+        padding: var(--space-2) 0;
+    }
+
+    .education-school {
+        font-size: var(--text-base);
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0 0 var(--space-1) 0;
+    }
+
+    .education-degree {
+        font-size: var(--text-sm);
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
+    /* Section Box Header */
+    .section-box {
+        border: 1px dashed var(--text-tertiary);
+        padding: var(--space-3) var(--space-4);
+        margin-bottom: var(--space-4);
+        margin-top: 0;
+    }
+
+    .section-box h2 {
+        margin-bottom: 0;
+        font-family: var(--font-pixel-square);
+        text-transform: lowercase;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+
+    .skill-group {
+        margin-bottom: var(--space-6);
+    }
+
+    .skill-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .skill-group h3 {
+        font-size: var(--text-sm);
+        font-weight: 600;
+        color: var(--text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: var(--space-3);
+    }
+
+    .skill-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+    }
+
+    /* Print Styles */
+    @media print {
+        .page-container {
+            padding: 0;
+            max-width: none;
+        }
+
+        .section {
+            page-break-inside: avoid;
+        }
+
+        .collapse-item {
+            page-break-inside: avoid;
+        }
+
+        .collapse-content {
+            display: block !important;
+        }
+
+        .collapse-chevron {
+            display: none;
+        }
+
+        body {
+            font-size: 12px;
+            line-height: 1.4;
+            color: #000;
+            background: white;
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .page-container {
+            padding: var(--space-8) var(--space-4);
+        }
+
+        .section {
+            padding: var(--space-8) 0;
+        }
+
+        .collapse-title-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--space-1);
+        }
+
+        .experience-period {
+            margin-left: 0;
+        }
+
+        .education-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>

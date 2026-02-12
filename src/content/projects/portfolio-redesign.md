@@ -8,7 +8,9 @@ featured: true
 category: "web-development"
 tags: ["astro", "design", "portfolio", "typescript"]
 technologies: ["Astro", "TypeScript", "CSS", "Geist Design System", "Vercel"]
-github: "https://github.com/andrewgetz/andrewgetzdata.github.io"
+type: "work"
+view_source: "https://github.com/andrewgetzdata/andrewgetzdata.github.io"
+github: "https://github.com/andrewgetzdata/andrewgetzdata.github.io"
 image:
   src: "/images/portfolio-redesign-hero.jpg"
   alt: "Screenshot of the new portfolio homepage"
