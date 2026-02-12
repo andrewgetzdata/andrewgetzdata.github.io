@@ -114,6 +114,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -128,9 +129,31 @@ body {
   transition: background-color var(--transition), color var(--transition);
 }
 
-/* Typography Hierarchy - Swiss Design Principles */
-/* Headers use Geist Sans with optimized display rendering */
-h1, h2, h3, h4, h5, h6 {
+/* Typography Hierarchy */
+/* H1/H2 use pixel fonts by default, H3+ use Geist Sans */
+h1, h2 {
+  margin: 0;
+  font-family: var(--font-pixel-square);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}
+
+h1 {
+  font-size: calc(var(--text-3xl) * 0.8);
+  margin-bottom: var(--space-6);
+}
+
+h2 {
+  font-size: calc(var(--text-2xl) * 0.8);
+  margin-bottom: var(--space-5);
+}
+
+h3, h4, h5, h6 {
   margin: 0;
   font-family: var(--font-geist-sans);
   font-weight: 700;
@@ -138,17 +161,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   letter-spacing: -0.02em;
   text-rendering: geometricPrecision;
-}
-
-h1 {
-  font-size: var(--text-4xl);
-  margin-bottom: var(--space-6);
-  font-weight: 800;
-}
-
-h2 {
-  font-size: var(--text-3xl);
-  margin-bottom: var(--space-5);
 }
 
 h3 {
@@ -171,47 +183,13 @@ h6 {
   margin-bottom: var(--space-2);
 }
 
-/* Pixel Typography - Retro Gaming Style */
-.pixel-heading,
-h1.pixel,
-h2.pixel,
-h3.pixel,
-h4.pixel,
-h5.pixel,
-h6.pixel {
-  font-family: var(--font-pixel-square);
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-rendering: pixelated;
-  image-rendering: pixelated;
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: unset;
-  line-height: var(--leading-snug);
-}
-
+/* Pixel Typography Variants */
 .pixel-grid {
   font-family: var(--font-pixel-grid);
 }
 
 .pixel-circle {
   font-family: var(--font-pixel-circle);
-}
-
-/* Pixel heading sizes - adjusted for readability */
-h1.pixel {
-  font-size: calc(var(--text-3xl) * 0.8);
-  line-height: 1.2;
-}
-
-h2.pixel {
-  font-size: calc(var(--text-2xl) * 0.8);
-  line-height: 1.2;
-}
-
-h3.pixel {
-  font-size: calc(var(--text-xl) * 0.8);
-  line-height: 1.2;
 }
 
 /* Body text uses Geist Sans */

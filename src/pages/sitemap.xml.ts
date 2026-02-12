@@ -9,11 +9,8 @@ export const GET: APIRoute = async ({ site }) => {
   // Static pages
   const staticPages = [
     '',
-    'about',
     'resume',
-    'blog',
     'work',
-    'contact'
   ];
 
   // Dynamic blog pages
@@ -35,8 +32,8 @@ export const GET: APIRoute = async ({ site }) => {
       // Set priority based on page type
       let priority = '0.5';
       if (page === '') priority = '1.0'; // Homepage
-      else if (['about', 'resume', 'contact'].includes(page)) priority = '0.8';
-      else if (['blog', 'work'].includes(page)) priority = '0.7';
+      else if (['resume'].includes(page)) priority = '0.8';
+      else if (['work'].includes(page)) priority = '0.7';
 
       return `  <url>
     <loc>${url}</loc>
