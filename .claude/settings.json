@@ -6,7 +6,19 @@
     "allow": [
       "Bash(git *)",
       "Bash(gh *)",
-      "Bash(npm *)"
+      "Bash(npm *)",
+      "WebSearch",
+      "mcp__*__list_issues",
+      "mcp__*__list_teams",
+      "mcp__*__list_issue_labels",
+      "mcp__*__list_issue_statuses",
+      "mcp__*__list_projects",
+      "mcp__*__get_issue",
+      "mcp__*__get_team",
+      "mcp__*__create_issue",
+      "mcp__*__create_issue_label",
+      "mcp__*__create_comment",
+      "mcp__*__update_issue"
     ]
   }
 }
