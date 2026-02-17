@@ -42,6 +42,10 @@ function formatDate(date: Date): string {
 >
   <div class="page-container">
     <section class="section">
+      <p class="page-description">
+        a collection of work, writing, and experiments spanning analytics engineering, data engineering, and building with AI — use the filters below to explore by type or tag
+      </p>
+
       <div class="filters" role="group" aria-label="Filter content">
         {types.map(type => (
           <button
@@ -136,6 +140,14 @@ function formatDate(date: Date): string {
 
   .section {
     padding: var(--space-6) 0;
+  }
+
+  .page-description {
+    font-size: var(--text-lg);
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin: 0 0 var(--space-6) 0;
+    line-height: var(--leading-relaxed);
   }
 
   /* Filters */
