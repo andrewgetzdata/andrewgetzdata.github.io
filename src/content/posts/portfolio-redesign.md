@@ -1,14 +1,13 @@
 ---
 title: "Portfolio Redesign with Astro"
 description: "Complete redesign and rebuild of my personal portfolio using modern tools and design principles."
-startDate: 2026-02-10
-endDate: 2026-02-15
-featured: true
-category: "web-development"
+pubDate: 2026-02-10
 tags: ["design", "portfolio"]
-technologies: ["Astro", "TypeScript", "CSS", "Geist Design System"]
+featured: true
 type: "work"
+category: "web-development"
 view_source: "https://github.com/andrewgetzdata/andrewgetzdata.github.io"
+draft: false
 ---
 
 A complete redesign and rebuild of my personal portfolio website, moving from Jekyll to Astro while implementing Vercel's Geist design principles for a clean, modern, and performant experience.

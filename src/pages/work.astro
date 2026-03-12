@@ -1,32 +1,19 @@
 ---
-// Work Page - All work and writing with tag filtering
+// Work Page - All content with tag filtering
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Aggregate all content
-const blogPosts = (await getCollection('blog'))
+const allContent = (await getCollection('posts'))
   .filter(p => !p.data.draft)
   .map(p => ({
     ...p,
-    contentType: 'writing' as const,
     date: p.data.pubDate,
-    href: `/blog/${p.slug}/`,
-  }));
-
-const projects = (await getCollection('projects'))
-  .filter(p => p.data.status !== 'archived')
-  .map(p => ({
-    ...p,
-    contentType: 'work' as const,
-    date: p.data.startDate,
-    href: `/work/${p.slug}/`,
-  }));
-
-const allContent = [...blogPosts, ...projects]
+    href: `/content/${p.slug}/`,
+  }))
   .sort((a, b) => b.date.getTime() - a.date.getTime());
 
 // Collect unique types from frontmatter
-const types = ['all', ...new Set(allContent.map(c => c.data.type || c.contentType))];
+const types = ['all', ...new Set(allContent.map(c => c.data.type).filter(Boolean))];
 
 // Collect unique tags from all content
 const allTags = [...new Set(allContent.flatMap(c => c.data.tags))].sort();
@@ -66,13 +53,15 @@ function formatDate(date: Date): string {
 
       <div class="items">
         {allContent.map(item => (
-          <a href={item.href} class="item" data-type={item.data.type || item.contentType} data-tags={item.data.tags.join(',')}>
+          <a href={item.href} class="item" data-type={item.data.type} data-tags={item.data.tags.join(',')}>
             <div class="item-top">
               <h3 class="item-title">{item.data.title}</h3>
               <div class="item-badges">
-                <span class="badge badge-gray-subtle">{item.data.type || item.contentType}</span>
-                {item.contentType === 'work' && 'category' in item.data && (
-                  <span class="badge badge-teal-subtle">{(item.data.category as string).replace('-', ' ')}</span>
+                {item.data.type && (
+                  <span class="badge badge-gray-subtle">{item.data.type}</span>
+                )}
+                {item.data.category && (
+                  <span class="badge badge-teal-subtle">{item.data.category.replace('-', ' ')}</span>
                 )}
               </div>
             </div>

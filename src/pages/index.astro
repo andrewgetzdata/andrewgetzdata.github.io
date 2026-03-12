@@ -4,27 +4,13 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SocialLinks from "../components/SocialLinks.astro";
 
-// Aggregate all content
-const blogPosts = (await getCollection("blog"))
-    .filter((p) => !p.data.draft)
+const allContent = (await getCollection("posts"))
+    .filter((p) => !p.data.draft && p.data.featured)
     .map((p) => ({
         ...p,
-        contentType: "writing" as const,
         date: p.data.pubDate,
-        href: `/blog/${p.slug}/`,
-    }));
-
-const projects = (await getCollection("projects"))
-    .filter((p) => p.data.status !== "archived")
-    .map((p) => ({
-        ...p,
-        contentType: "work" as const,
-        date: p.data.startDate,
-        href: `/work/${p.slug}/`,
-    }));
-
-const featured = [...blogPosts, ...projects]
-    .filter((c) => c.data.featured)
+        href: `/content/${p.slug}/`,
+    }))
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 
 function formatDate(date: Date): string {
@@ -70,22 +56,21 @@ function formatDate(date: Date): string {
             <h2>Featured</h2>
             <div class="items">
                 {
-                    featured.map((item) => (
+                    allContent.map((item) => (
                         <a href={item.href} class="item">
                             <div class="item-top">
                                 <h3 class="item-title">{item.data.title}</h3>
                                 <div class="item-badges">
-                                    <span class="badge badge-gray-subtle">
-                                        {item.contentType}
-                                    </span>
-                                    {item.contentType === "work" &&
-                                        "category" in item.data && (
-                                            <span class="badge badge-teal-subtle">
-                                                {(
-                                                    item.data.category as string
-                                                ).replace("-", " ")}
-                                            </span>
-                                        )}
+                                    {item.data.type && (
+                                        <span class="badge badge-gray-subtle">
+                                            {item.data.type}
+                                        </span>
+                                    )}
+                                    {item.data.category && (
+                                        <span class="badge badge-teal-subtle">
+                                            {item.data.category.replace("-", " ")}
+                                        </span>
+                                    )}
                                 </div>
                             </div>
                             <p class="item-desc">{item.data.description}</p>

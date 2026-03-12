@@ -2,10 +2,12 @@
 title: "Welcome to My New Portfolio Site"
 description: "Introducing my redesigned portfolio built with Astro and following Geist design principles."
 pubDate: 2026-02-11
-tags: ["design", "astro"]
+tags: ["portfolio"]
 featured: true
 type: "writing"
 category: "web-development"
+view_source: ""
+draft: false
 ---
 
 I'm excited to introduce my completely redesigned portfolio and personal website. After using Jekyll for several years, I decided it was time for a fresh start with modern tools and a design that better reflects my current work and aesthetic preferences.

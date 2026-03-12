@@ -5,7 +5,9 @@ pubDate: 2023-01-17
 tags: ["thoughts", "writing"]
 featured: false
 type: "writing"
-category: "blog"
+category: ""
+view_source: ""
+draft: false
 ---
 
 For those who don't know me, here are a couple quick facts:
