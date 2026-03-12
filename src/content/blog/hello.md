@@ -1,11 +1,11 @@
 ---
-title: "Hello"
-description: "My first blog type post that follows my line of thought as to why I'm writing now and the valid concerns I have."
+title: "Hello 👋"
+description: "My first blog post ever."
 pubDate: 2023-01-17
 tags: ["thoughts", "writing"]
 featured: false
-draft: false
-author: "Andrew Getz"
+type: "writing"
+category: "blog"
 ---
 
 For those who don't know me, here are a couple quick facts:

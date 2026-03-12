@@ -1,21 +1,18 @@
 ---
-title: "Welcome to My New Site"
+title: "Welcome to My New Portfolio Site"
 description: "Introducing my redesigned portfolio built with Astro and following Geist design principles."
 pubDate: 2026-02-11
-tags: ["announcement", "design", "astro"]
+tags: ["design", "astro"]
 featured: true
 type: "writing"
 category: "web-development"
-image:
-  src: "/images/new-site-hero.jpg"
-  alt: "Screenshot of the new portfolio design"
 ---
 
 I'm excited to introduce my completely redesigned portfolio and personal website. After using Jekyll for several years, I decided it was time for a fresh start with modern tools and a design that better reflects my current work and aesthetic preferences.
 
 ## Why the Redesign?
 
-The previous site served me well, but I wanted something that felt more aligned with my current focus on clean, purposeful design and modern development practices. The new site is built with [Astro](https://astro.build) and follows [Vercel's Geist design principles](https://vercel.com/geist/introduction), emphasizing simplicity, minimalism, and excellent performance.
+The previous site served me well, but wasn't easy to update. I wanted something that felt more aligned with my current focus on clean, purposeful design and modern development practices. The new site is built with [Astro](https://astro.build) and follows [Vercel's Geist design principles](https://vercel.com/geist/introduction), emphasizing simplicity, minimalism, and excellent performance.
 
 ### Key Improvements
 
