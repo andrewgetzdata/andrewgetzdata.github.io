@@ -1,11 +1,11 @@
 ---
-// Dynamic Blog Post Page
+// Dynamic Content Page
 import { getCollection } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getCollection('blog');
+  const posts = await getCollection('posts');
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: post,
@@ -21,7 +21,6 @@ type Props = {
 const post = Astro.props;
 const { Content } = await post.render();
 
-// Format date as YYYY-MM-DD
 function formatDate(date: Date): string {
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, '0');
@@ -33,15 +32,13 @@ function formatDate(date: Date): string {
 <BaseLayout
   title={`${post.data.title} - Andrew Getz`}
   description={post.data.description}
-  ogImage={post.data.image?.src}
   type="article"
   publishedTime={post.data.pubDate.toISOString()}
-  modifiedTime={post.data.updatedDate?.toISOString()}
   tags={post.data.tags}
 >
-  <article class="blog-post">
+  <article class="post-detail">
     <div class="page-container">
-      <!-- Post Header -->
+      <!-- Header -->
       <header class="post-header">
         <h1 class="post-title">{post.data.title}</h1>
 
@@ -49,8 +46,12 @@ function formatDate(date: Date): string {
           <time datetime={post.data.pubDate.toISOString()}>
             {formatDate(post.data.pubDate)}
           </time>
-          <span class="meta-sep">|</span>
-          <span class="badge badge-gray-subtle">{post.data.type || 'writing'}</span>
+          {post.data.type && (
+            <>
+              <span class="meta-sep">|</span>
+              <span class="badge badge-gray-subtle">{post.data.type}</span>
+            </>
+          )}
           {post.data.category && (
             <>
               <span class="meta-sep">|</span>
@@ -76,7 +77,7 @@ function formatDate(date: Date): string {
 
       <div class="divider" aria-hidden="true"></div>
 
-      <!-- Post Body -->
+      <!-- Body -->
       <div class="post-body">
         <Content />
       </div>
@@ -156,7 +157,6 @@ function formatDate(date: Date): string {
     line-height: var(--leading-relaxed);
   }
 
-  /* Blog Content Styling */
   .post-body :global(h1),
   .post-body :global(h2),
   .post-body :global(h3),
@@ -248,7 +248,12 @@ function formatDate(date: Date): string {
     color: var(--text-primary);
   }
 
-  /* Responsive Design */
+  .post-body :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+  }
+
   @media (max-width: 768px) {
     .page-container {
       padding: var(--space-6) var(--space-4);
