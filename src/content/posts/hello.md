@@ -1,11 +1,11 @@
 ---
-title: "Hello 👋"
+title: "Hello World 👋"
 description: "My first blog post ever."
 pubDate: 2023-01-17
-tags: ["thoughts", "writing"]
+tags: ["personal"]
 featured: false
 type: "writing"
-category: ""
+category: "blog"
 view_source: ""
 draft: false
 ---

@@ -2,10 +2,10 @@
 title: "On Writing and Development"
 description: "Exploring the parallels between writing and programming, and how both benefit from clarity and purpose."
 pubDate: 2026-01-15
-tags: ["leadership"]
+tags: ["craft"]
 featured: true
 type: "writing"
-category: ""
+category: "blog"
 view_source: ""
 draft: false
 ---

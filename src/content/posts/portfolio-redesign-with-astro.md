@@ -4,8 +4,8 @@ description: "Complete redesign and rebuild of my personal portfolio using moder
 pubDate: 2026-02-10
 tags: ["design", "portfolio"]
 featured: true
-type: "work"
-category: "web-development"
+type: "code"
+category: "web development"
 view_source: "https://github.com/andrewgetzdata/andrewgetzdata.github.io"
 draft: false
 ---

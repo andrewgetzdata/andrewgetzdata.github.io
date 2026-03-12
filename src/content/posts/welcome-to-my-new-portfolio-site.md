@@ -5,7 +5,7 @@ pubDate: 2026-02-11
 tags: ["portfolio"]
 featured: true
 type: "writing"
-category: "web-development"
+category: "web development"
 view_source: ""
 draft: false
 ---
