@@ -3,7 +3,6 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SocialLinks from "../components/SocialLinks.astro";
-import AIEnablement from "../components/AIEnablement.astro";
 
 // Aggregate all content
 const blogPosts = (await getCollection("blog"))
@@ -63,11 +62,6 @@ function formatDate(date: Date): string {
                 information more accessible. More details coming soon.
             </p>
         </section>
-
-        <div class="divider" aria-hidden="true"></div>
-
-        <!-- AI Enablement -->
-        <AIEnablement />
 
         <div class="divider" aria-hidden="true"></div>
 
